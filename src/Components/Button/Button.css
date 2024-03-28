@@ -1,0 +1,18 @@
+.btn-comp {
+  background-color: #9de6bd;
+  color: #01090f;
+  width: 7vw;
+  height: 2.5vw;
+  border: ridge;
+  border-color: #a4d4da;
+  border-radius: 5px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: medium;
+  font-weight: 600;
+}
+
+.usr-add {
+  margin: auto;
+  display: block;
+  margin-top: 2px;
+}
