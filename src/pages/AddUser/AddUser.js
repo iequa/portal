@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { api } from "../../Components/Button/utils/api";
+import { api } from "../../utils/api"
 import InputNumber from "../../Components/Input/InputNumber";
 import InputString from "../../Components/Input/InputString";
 import Button from "../../Components/Button/Button";

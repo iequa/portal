@@ -1,6 +1,6 @@
 import React, { useEffect, useReducer, useState } from "react";
 import Button from "../../Components/Button/Button";
-import { api } from "../../Components/Button/utils/api";
+import { api } from "../../utils/api"
 import { useNavigate, useSearchParams } from "react-router-dom";
 import Pagination from "../../Components/Pagination/Pagination";
 
