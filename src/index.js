@@ -8,6 +8,7 @@ import About from "./pages/About/About";
 import EditUser from "./pages/EditUser/EditUser";
 import AddUser from "./pages/AddUser/AddUser";
 import NotFound from "./pages/NotFound";
+import News from "./pages/News/News.js";
 
 const router = createBrowserRouter([
   {
@@ -15,12 +16,12 @@ const router = createBrowserRouter([
     element: <App />,
     children: [
       {
-        path: "/home",
+        path: "/About",
         element: <Main />,
       },
       {
-        path: "/About",
-        element: <About />,
+        path: "/news",
+        element: <News />,
       },
       {
         path: "/EditUser",

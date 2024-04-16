@@ -1,10 +1,11 @@
 .logo {
     height: 10vh;
     margin-top: 0%;
+    cursor: pointer;
   }
   
   .mainimage {
-    position: fixed;
+    position: absolute;
     top: 1.5%;
     left: 11%;
   }
@@ -25,7 +26,7 @@
       width: 80vw;
     }
     .mainimage {
-      position: fixed;
+      display: block;
       top: 2px;
       left: 2%;
       height: 100px;

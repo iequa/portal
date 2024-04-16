@@ -3,11 +3,11 @@ import React from "react";
 function setSize(size) {
   switch (size) {
     case "large":
-      return { width: "250px", height: "60px" };
+      return { fontSize: "18px" ,width: "250px", height: "48px" };
     case "small":
-      return { width: "150px", height: "40px", fontSize: "small" };
+      return { fontSize: "16px", width: "150px", height: "32px" };
     case "medium":
-      return { width: "200px", height: "50px" };
+      return { fontSize: "14px", width: "200px", height: "40px" };
     default:
       return { };
   }

@@ -5,7 +5,7 @@ const ResultType = {
 };
 
 class Api {
-  backendUrl = "http://localhost:5454";
+  backendUrl = "http://192.168.0.164:8085";
 
   constructor(options) {
     this.options = options;
@@ -58,14 +58,6 @@ class Api {
       } catch (error) {}
 
       switch (response.status) {
-        case NOT_AUTH_STATUS: {
-          errorObj = {
-            code: NOT_AUTH_STATUS,
-            message: errJson.errorMessage,
-            callStack: errJson.stackTrace,
-          };
-          break;
-        }
         case 400:
         case 404:
         case 500: {
@@ -88,6 +80,36 @@ class Api {
       }
       return Promise.reject(errorObj);
     }
+  }
+
+  getDonorBloodData(args) {
+    const url = `${this.backendUrl}/get-donorbloodlight`;
+    const body = {
+      method: "get",
+    };
+    return this._fetchData(url, body, args);
+  }
+
+  getNewsPreviews(args) {
+    const url = `${this.backendUrl}/get-news-prevs`;
+    const body = {
+      method: "post",
+      body: JSON.stringify({
+        page: args.page,
+      }),
+    };
+    return this._fetchData(url, body, args);
+  }
+
+  getNewsForPage(args) {
+    const url = `${this.backendUrl}/get-news-data`;
+    const body = {
+      method: "post",
+      body: JSON.stringify({
+        id: args?.pageId,
+      }),
+    };
+    return this._fetchData(url, body, args);
   }
 
   getUsersList(args) {

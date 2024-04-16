@@ -1,10 +1,108 @@
+.hidden {
+    display: none;
+}
+
 .menublock {
     display: flex;
     justify-content: center;
+    height: 39px;
+}
+
+.mob__menu {
+    display: none;
+}
+
+.mob__menu__button_main {
+    display: none;
 }
 
 .menubutton {
     background-color: red;
     margin-left: 10px;
     margin-right: 10px;
+    cursor: pointer;
+}
+
+@media (max-width: 1023px) {
+    .menublock {
+        display: none;
+    }
+    
+    .mob__menu__button {
+        display: flex;
+        align-items: center;
+        font-size: 20px;
+        font-weight: 500;
+        color: rgb(5, 63, 60);
+        cursor: pointer;
+    }
+
+    .mob__menu__button_main {
+        display: block;
+        position: absolute;
+        top: calc(5% + 5px);
+        right: 5px;
+        font-size: 20px;
+        font-weight: 500;
+        color: rgb(5, 63, 60);
+        cursor: pointer;
+    }
+
+    .mob__menu__list {
+        display: inherit;
+        margin: 0;
+        width: 100%;
+        padding: 0;
+        list-style-type: none;
+    }
+
+    .menubutton {
+        background-color: red;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+    .mob__menu {
+        display: flex;
+        position: absolute;
+        top: calc(5% + 45px);
+        left: 3px;
+        right: 1px;
+        width: calc(80% + 25px);
+        padding: 25px;
+        background-color: #ffeae8;
+        border: 1px solid #dd8717;
+        border-radius: 7px;
+        animation: 0.5s show ease;
+    }
+
+    .mob__menu::before,
+    .mob__menu::after {
+        display: flex;
+        content: "";
+        position: absolute;
+        width: 20px;
+        right: 15px;
+        border: 10px solid transparent;
+    }
+
+    .mob__menu::before {
+        top: -20px;
+        border-bottom: 10px solid #dd8717;
+    }
+
+    .mob__menu::after {
+        top: -19px;
+        border-bottom:  10px solid #fff; 
+    }
+  }
+
+    @media (max-width: 400px) {
+        .mob__menu {
+            width: calc(80% + 25px);
+        }
+    }
+
+  @keyframes show {
+    from { opacity: 0; }
+    to { opacity: 1; }
 }

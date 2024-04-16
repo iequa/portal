@@ -1,0 +1,94 @@
+.lightlist {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.bloodtext {
+    font-family:'Courier New', Courier, monospace;
+    text-align: center;
+    border-bottom: 1px solid black;
+    margin-bottom: 1%;
+}
+
+.lightname {
+    font-family: sans-serif;
+    text-align: center;
+}
+
+.base__lightelem {
+    text-align: center;
+    width: 35px;
+    min-width: 35px;
+    padding: 5px;
+    margin: 5px;
+    height: 18px;
+    background-color: white;
+    border: 1px solid black;
+}
+
+.needed {
+    background-color: red;
+}
+
+.particallyneeded {
+    background-color: yellow;
+}
+
+.notneeded {
+    background-color: green;
+}
+
+.plasmaonly {
+    background-color: #d6d6d6;
+}
+
+.rh {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.tutor__box {
+    display: flex;
+}
+
+.text__tutor {
+    font-family: sans-serif;
+    text-align: center;
+    margin-bottom: 0px;
+    margin-top: 10px;
+    display: flex;
+}
+
+@media (max-width: 1024px) {
+    .lightlist {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        word-wrap: normal;
+        flex-wrap: wrap;
+    }
+    
+    .bloodtext {
+        font-family:'Courier New', Courier, monospace;
+        text-align: center;
+    }
+    
+    .rh {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
+    
+    .lightname {
+        font-family: sans-serif;
+        text-align: center;
+    }
+
+    .lightname {
+        font-family: sans-serif;
+        text-align: center;
+        font-size: medium;
+    }
+  }

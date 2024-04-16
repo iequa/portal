@@ -3,6 +3,7 @@ import Button from "../../Components/Button/Button";
 import { api } from "../../utils/api"
 import { useNavigate, useSearchParams } from "react-router-dom";
 import Pagination from "../../Components/Pagination/Pagination";
+import NewsWidget from "../../Components/NewsWidget/NewsWidget";
 
 const Main = () => {
   const navigate = useNavigate();
@@ -64,6 +65,7 @@ const Main = () => {
 
   return (
     <div>
+      <NewsWidget/>
       <div className="table">
         {errorMessages.length === 0 ? (
           people?.length === 0 ? (

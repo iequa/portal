@@ -1,0 +1,12 @@
+.all__news__title {
+    display: flex;
+    justify-content: center;
+}
+
+.all__elements__block {
+    display: inline-flex;
+    width: 80%;
+    flex-direction: row;
+    justify-content: space-evenly;
+    cursor: pointer;
+}
