@@ -38,13 +38,13 @@ const News = () => {
     }, [id])
 
     return(
-        <div>
-            <h1>{page?.title}</h1>
-            <div>
+        <div className="news__place">
+            <h1 className="news__title">{page?.title}</h1>
+            <img className="news__img" src={page ? `data:img/jpeg;base64,${page?.img}` : ''}/>
+            <div className="news__body">
                 {page?.body?.length > 0 ? toReact(page?.body) : toReact("")}
             </div>
-            <p>{page?.date}</p>
-            <img src={page ? `data:img/jpeg;base64,${page?.img}` : ''}/>
+            <p className="news__date">{page?.date}</p>
         </div>
     )
 }

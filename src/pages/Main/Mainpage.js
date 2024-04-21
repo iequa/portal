@@ -4,6 +4,7 @@ import { api } from "../../utils/api"
 import { useNavigate, useSearchParams } from "react-router-dom";
 import Pagination from "../../Components/Pagination/Pagination";
 import NewsWidget from "../../Components/NewsWidget/NewsWidget";
+import DonorBloodlight from "../../Components/DonorBloodlight/DonorBloodlight";
 
 const Main = () => {
   const navigate = useNavigate();
@@ -65,7 +66,9 @@ const Main = () => {
 
   return (
     <div>
+      <DonorBloodlight/>
       <NewsWidget/>
+      <p/>
       <div className="table">
         {errorMessages.length === 0 ? (
           people?.length === 0 ? (

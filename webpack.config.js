@@ -1,7 +1,7 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const path = require("path");
 
-module.exports = {
+var config = {
   entry: "./src/index.js",
   mode: "development",
   output: {
@@ -45,4 +45,17 @@ module.exports = {
       template: path.join(__dirname, "public", "index.html"),
     }),
   ],
+}
+
+module.exports = (env, argv) => {
+  console.log (argv, "___",  env)
+  if (argv.mode === 'development') {
+    config.devtool = 'source-map';
+  }
+
+  if (argv.mode === 'production') {
+    config.mode = 'production';
+  }
+
+  return config;
 };

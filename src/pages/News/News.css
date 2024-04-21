@@ -1,0 +1,27 @@
+.news__place {
+    font-family: "Open Sans", sans-serif;
+}
+
+.news__title {
+    text-align: center;
+}
+
+.news__body {
+    font-size: 15pt;
+    font-optical-sizing: auto;
+    font-weight: 300;
+    font-variation-settings:
+    "wdth" 100;
+}
+
+.news__date {
+    font-size: 12pt;
+}
+
+.news__img {
+    display: block;
+    width: 8em;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+}

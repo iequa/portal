@@ -5,8 +5,37 @@
 
 .all__elements__block {
     display: inline-flex;
-    width: 80%;
+    width: 100%;
+    height: 300px;
     flex-direction: row;
-    justify-content: space-evenly;
+    justify-content: center;
     cursor: pointer;
+}
+
+.prev__short__title {
+    margin-top: 0%;
+    text-align: center;
+    border: solid 1px;
+}
+
+.prev__short__body {
+    margin-top: 0%;
+    text-align: center;
+    border: solid 1px;
+    margin-bottom: 0%;
+}
+
+.news__block__elem {
+    width: 400px;
+    height: 100%;
+    background-color: bisque;
+    border: solid 1px;
+}
+
+.prev__img {
+    display: block;
+    width: 8em;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
 }

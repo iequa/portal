@@ -3,8 +3,6 @@ import { Outlet, useNavigate } from "react-router-dom";
 import Logo from "./static/logo_true.svg";
 import Header from "./Components/Header/Header";
 import Menu from "./Components/Menu/Menu";
-import DonorBloodlight from "./Components/DonorBloodlight/DonorBloodlight";
-import NewsWidget from "./Components/NewsWidget/NewsWidget";
 
 const StyleClass = "menu-item";
 const ActiveElem = "menu-item-active";
@@ -41,7 +39,6 @@ const App = () => {
         onImageClick={()=>navigate("/about")}
         />
         <Menu />
-        <DonorBloodlight/>
       </div>
       <Outlet />
     </div>

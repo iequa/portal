@@ -31,7 +31,6 @@ const NewsWidget = () => {
         navigate("/news?id=" + idFromString);
     }
 
-    const [res, setRes] = useState(toReact('[b]Super [i]easy[/i][/b] [u]to[/u] render'));
     useEffect(() => {
         api.getNewsPreviews({
             page: 0,
@@ -40,6 +39,7 @@ const NewsWidget = () => {
                 response.newsPreviews.forEach((elem) => {
                     let arrelem = {
                         shortTitle: elem.shortTitle,
+                        shortBody: elem.shortBody,
                         previewImage:  elem.previewImage,
                         id: elem.id
                     }
@@ -52,19 +52,19 @@ const NewsWidget = () => {
 
     
     return (
-        <div id="test">
+        <div id="widget">
             <h1 className="all__news__title">Наши новости</h1>
             <div className="all__elements__block">
                 {newsPreviews.map((elem) => {
                     return(
                         <div id={`news__elem__${elem.id}`} className="news__block__elem" onClick={onClick} key={`news__elem__${elem.id}`}>
-                            <h2 className="prev__news__title">{elem.shortTitle}</h2>
+                            <h3 className="prev__short__title">{elem.shortTitle}</h3>
                             <img className="prev__img" src={`data:image/jpeg;base64,${elem.previewImage}`}/>
+                            <p className="prev__short__body">{elem.shortBody}</p>
                         </div>
                     )
                 })}
             </div>
-            {res}
         </div>
     )
 }
