@@ -72,7 +72,7 @@ const Main = () => {
       <NewsWidget/>
       <ServiceProvisionPopup
         title={"Запись на донацию"}
-        innerCalendarElement = {<RecordsCalendar title={"Даты для записи"} calendarType={"donation"}/>}
+        innerElement = {<RecordsCalendar title={"Даты для записи"} calendarType={"donation"}/>}
       />
       <p/>
       <div className="table">

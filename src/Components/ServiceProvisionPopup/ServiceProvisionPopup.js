@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from "react";
 import Button from "../Button/Button";
 
-const ServiceProvisionPopup = ({ innerCalendarElement, title }) => {
+const ServiceProvisionPopup = ({ id, innerElement, title, selector}) => {
 
     const [isOpen, setIsOpen] = useState(false);
 
-    const [InnerCalendarElement, setInnerCalendarELement] = useState();
+    const [InnerElement, setInnerELement] = useState();
 
 
     
 
     useEffect(() => {
-      if (innerCalendarElement) {
-        setInnerCalendarELement(innerCalendarElement);
+      if (innerElement) {
+        setInnerELement(innerElement);
       }
     })
 
@@ -21,13 +21,13 @@ const ServiceProvisionPopup = ({ innerCalendarElement, title }) => {
     };
 
     return (
-      <div>
+      <div id={id}>
         <button onClick={togglePopup}>Open Popup</button>
         {isOpen && (
-          <div id="popup" className="service__popup">
+          <div id="popup" className= {selector ? selector : "service__popup"}>
             <h1 className="popup__title">{title}</h1>
             <Button selector="close__btn" content={"Закрыть окно"} onClick={togglePopup} size={"small"}/>
-            {InnerCalendarElement}
+            {InnerElement}
           </div>
         )}
       </div>

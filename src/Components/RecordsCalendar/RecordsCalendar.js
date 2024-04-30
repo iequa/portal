@@ -82,6 +82,11 @@ const RecordsCalendar = ({calendarType, title}) => {
         }
         else {
             btnConfirm[0].style.display = "none";
+            let elem = document?.getElementById(SelectedElement);
+            if (elem) {
+                elem.className = "calendar__time__item";
+            }
+            setSelectedElement("");
         }
     }
 

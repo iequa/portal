@@ -16,4 +16,5 @@ const InputString = ({ value, onChange }) => {
     />
   );
 };
+
 export default InputString;

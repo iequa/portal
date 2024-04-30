@@ -8,11 +8,13 @@
 
 .calendar__date__headers {
     display: grid;
-    justify-content: space-around;
-    border: 1px black solid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-    justify-items: center;
-    height: 5vh;
+    grid-template-rows: 1fr;
+    grid-column-gap: 1rem;
+    width: 99%;
+    margin-left: auto;
+    margin-right: auto;
+    height: 3vh;
 }
 
 .calendar__date__title {
@@ -26,15 +28,17 @@
 
 .calendar__date__items {
     display: grid;
-    justify-content: space-around;
-    border: 1px black solid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-    justify-items: center;
+    grid-column-gap: 1rem;
+    width: 99%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .calendar__date__items__rows {
     display: grid;
     grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-column-gap: 0.5rem;
     grid-template-columns: 1fr;
     justify-items: center;
     width: 100%;
@@ -48,6 +52,7 @@
     margin: 0px 0px 0px 0px;
     border: 1px black solid;
     text-align: center;
+    align-content: center;
 }
 
 .selected{
@@ -61,4 +66,13 @@
 .btn__confirm {
     margin: 0 auto;
     display: block;
+}
+
+@media (max-width: 1024px) {
+    .calendar__date__items {
+        grid-column-gap: 0;
+    }
+    .calendar__date__headers {
+        grid-column-gap: 0;
+    }
 }
