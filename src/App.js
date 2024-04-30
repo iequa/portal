@@ -34,9 +34,9 @@ const App = () => {
     <div className="plot" onClick={handleMouseClick}>
       <div>
         <Header 
-        HeaderText={"Портал службы крови Тульской области"}
-        Logo={Logo}
-        onImageClick={()=>navigate("/about")}
+          HeaderText={"Портал службы крови Тульской области"}
+          Logo={Logo}
+          onImageClick={()=>navigate("/about")}
         />
         <Menu />
       </div>

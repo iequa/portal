@@ -1,0 +1,64 @@
+.calendar__common {
+    font-family: "Open Sans", sans-serif;
+}
+
+.calendar__title {
+    text-align: center;
+}
+
+.calendar__date__headers {
+    display: grid;
+    justify-content: space-around;
+    border: 1px black solid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    justify-items: center;
+    height: 5vh;
+}
+
+.calendar__date__title {
+    width: 100%;
+    height: 100%;
+    margin: 0px 0px 0px 0px;
+    text-align: center;
+    align-content: center;
+    border: 1px black solid;
+}
+
+.calendar__date__items {
+    display: grid;
+    justify-content: space-around;
+    border: 1px black solid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    justify-items: center;
+}
+
+.calendar__date__items__rows {
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr;
+    justify-items: center;
+    width: 100%;
+}
+
+.calendar__time__item {
+    width: 100%;
+    height: 4vh;
+    background-color: rgb(39, 187, 71);
+    cursor: pointer;
+    margin: 0px 0px 0px 0px;
+    border: 1px black solid;
+    text-align: center;
+}
+
+.selected{
+    background-color: rgba(38, 0, 255, 0.329);
+}
+
+.not__avaliable {
+    background-color: rgb(255, 255, 255);
+}
+
+.btn__confirm {
+    margin: 0 auto;
+    display: block;
+}

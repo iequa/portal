@@ -5,6 +5,8 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import Pagination from "../../Components/Pagination/Pagination";
 import NewsWidget from "../../Components/NewsWidget/NewsWidget";
 import DonorBloodlight from "../../Components/DonorBloodlight/DonorBloodlight";
+import ServiceProvisionPopup from "../../Components/ServiceProvisionPopup/ServiceProvisionPopup";
+import RecordsCalendar from "../../Components/RecordsCalendar/RecordsCalendar";
 
 const Main = () => {
   const navigate = useNavigate();
@@ -68,6 +70,10 @@ const Main = () => {
     <div>
       <DonorBloodlight/>
       <NewsWidget/>
+      <ServiceProvisionPopup
+        title={"Запись на донацию"}
+        innerCalendarElement = {<RecordsCalendar title={"Даты для записи"} calendarType={"donation"}/>}
+      />
       <p/>
       <div className="table">
         {errorMessages.length === 0 ? (

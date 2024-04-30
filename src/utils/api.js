@@ -112,6 +112,30 @@ class Api {
     return this._fetchData(url, body, args);
   }
 
+  getCalendarData(args) {
+    const url = `${this.backendUrl}/get-calendar-data`;
+    const body = {
+      method: "post",
+      body: JSON.stringify({
+        type: args?.body?.type,
+        days: args?.body?.days,
+      }),
+    };
+    return this._fetchData(url, body, args);
+  }
+
+  setServiceProvisionDate(args) {
+    const url = `${this.backendUrl}/set-service-provision-date`;
+    const body = {
+      method: "put",
+      body: JSON.stringify({
+        selectedDatetime: args?.body?.selectedDatetime,
+        user: args?.body?.user,
+      }),
+    };
+    return this._fetchData(url, body, args);
+  }
+
   getUsersList(args) {
     const url = `${this.backendUrl}/get-users`;
     const body = {
