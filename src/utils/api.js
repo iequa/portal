@@ -1,3 +1,5 @@
+import { tokenStorage } from "./StoredToken";
+
 const ResultType = {
   JSON: "JSON",
   BINARY: "BINARY",
@@ -12,6 +14,28 @@ class Api {
   }
 
   _fetchData(url, requestBody, args, resultType = ResultType.JSON) {
+    if (tokenStorage.isLogged()) {
+      const token = tokenStorage.getToken();
+      if (token && !tokenStorage.isExpired()) {
+        if (requestBody.headers) {
+          console.log("Мейн варик ", requestBody);
+          requestBody.headers.Token = token;
+        } 
+        else {
+          if (requestBody) {
+            console.log("Второй варик ", requestBody);
+            requestBody.headers = {Token: token};
+          } 
+          else {
+            console.log("Третий варик ", requestBody);
+            requestBody = {headers: {
+              Token: token,
+            }};
+          }
+        }
+      }
+    }
+    
     return fetch(url, requestBody)
       .then((response) => {
         return this._processResponse(response, resultType);
@@ -35,6 +59,10 @@ class Api {
   }
 
   async _processResponse(response, resultType) {
+    if(await response?.headers?.Token) {
+      tokenStorage.setToken(response?.headers?.Token);
+      tokenStorage.setIsLogged(true);
+    }
     if (response.ok) {
       switch (resultType) {
         case ResultType.JSON: {
@@ -80,6 +108,18 @@ class Api {
       }
       return Promise.reject(errorObj);
     }
+  }
+
+  processLogin(args) {
+    const url = `${this.backendUrl}/process-login`;
+    const body = {
+      method: "post",
+      body: JSON.stringify({
+        login: args.login,
+        value: args.value,
+      }),
+    };
+    return this._fetchData(url, body, args);
   }
 
   getDonorBloodData(args) {
@@ -132,6 +172,7 @@ class Api {
         selectedDatetime: args?.body?.selectedDatetime,
         user: args?.body?.user,
       }),
+      resolveWithFullResponse: true,
     };
     return this._fetchData(url, body, args);
   }
@@ -148,12 +189,9 @@ class Api {
   }
 
   getUserInfo(args) {
-    const url = `${this.backendUrl}/get-user`;
+    const url = `${this.backendUrl}/get-user-data`;
     const body = {
       method: "post",
-      body: JSON.stringify({
-        userId: args?.body?.id,
-      }),
     };
     return this._fetchData(url, body, args);
   }

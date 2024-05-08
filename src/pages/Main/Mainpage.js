@@ -17,29 +17,29 @@ const Main = () => {
 
   useEffect(() => {
     document.title = "Главная страница";
-    api.getUsersList({
-      page: 0,
-      resolveCallback: (response) => {
-        setCurrentPage(response.CurrentPage);
-        setPeople(response.Data);
-        setPagesCount(response.PagesCount);
-      },
-    });
+    // api.getUsersList({
+    //   page: 0,
+    //   resolveCallback: (response) => {
+    //     setCurrentPage(response.CurrentPage);
+    //     setPeople(response.Data);
+    //     setPagesCount(response.PagesCount);
+    //   },
+    // });
   }, []);
 
   useEffect(() => {
-    api.getUsersList({
-      page: currentPage,
-      resolveCallback: (response) => {
-        if (response?.ErrorMessages) {
-          setErrorMessages(response.ErrorMessages);
-        } else {
-          setErrorMessages([]);
-        }
-        setPeople(response.Data);
-        setPagesCount(response.PagesCount);
-      },
-    });
+    // api.getUsersList({
+    //   page: currentPage,
+    //   resolveCallback: (response) => {
+    //     if (response?.ErrorMessages) {
+    //       setErrorMessages(response.ErrorMessages);
+    //     } else {
+    //       setErrorMessages([]);
+    //     }
+    //     setPeople(response.Data);
+    //     setPagesCount(response.PagesCount);
+    //   },
+    // });
   }, [currentPage]);
 
   function changeCurrentPage(newPage) {
@@ -120,7 +120,7 @@ const Main = () => {
             </div>
           )
         ) : (
-          errorMessages.map((e) => e)
+          errorMessages.map((e) => <div>e</div>)
         )}
       </div>
       <Button

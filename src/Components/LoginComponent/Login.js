@@ -12,7 +12,6 @@ const Login = () => {
                 innerElement = {<LoginPage/>}
             />
         </div>
-        
     )
 }
 

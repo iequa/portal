@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-const InputString = ({ value, onChange }) => {
+const InputString = ({ id, value, onChange }) => {
   const [currValue, setValue] = useState("");
 
   useEffect(() => {
@@ -9,6 +9,7 @@ const InputString = ({ value, onChange }) => {
 
   return (
     <input
+      id={id} 
       className="input-comp-str"
       value={currValue ?? ""}
       onChange={(e) => onChange(e)}
