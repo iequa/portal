@@ -20,12 +20,12 @@ const Header = ({HeaderText, Logo, onImageClick}) => {
         <div className="logo">
           <img className="mainimage" onClick={onImageClick} src={Logo} />
           <div className="mainimage maintext">
-            <h1 className="mainimage maintext" onClick={onImageClick}>
+            <h1 className="mainimage maintext">
               {HeaderText}
             </h1>
           </div>
           {console.log(tokenStorage)}
-          {tokenStorage.isLogged() ? <label onClick={() => navigate("/profile")}>{tokenStorage.getUserName()}</label> : <Login/>}
+          {tokenStorage.isLogged() ? <label className="user__info__label" onClick={() => navigate("/profile")}>{tokenStorage.getUserName()}</label> : <Login/>}
         </div>
     );
 }

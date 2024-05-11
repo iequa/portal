@@ -18,16 +18,13 @@ class Api {
       const token = tokenStorage.getToken();
       if (token && !tokenStorage.isExpired()) {
         if (requestBody.headers) {
-          console.log("Мейн варик ", requestBody);
           requestBody.headers.Token = token;
         } 
         else {
           if (requestBody) {
-            console.log("Второй варик ", requestBody);
             requestBody.headers = {Token: token};
           } 
           else {
-            console.log("Третий варик ", requestBody);
             requestBody = {headers: {
               Token: token,
             }};
@@ -191,7 +188,7 @@ class Api {
   getUserInfo(args) {
     const url = `${this.backendUrl}/get-user-data`;
     const body = {
-      method: "post",
+      method: "GET",
     };
     return this._fetchData(url, body, args);
   }

@@ -25,6 +25,16 @@
     height: inherit;
   }
 
+  .user__info__label {
+    text-align: center;
+    align-content: center;
+    font-family: "Open Sans", sans-serif;
+    font-weight: 700;
+    width: 100%;
+    height: inherit;
+    cursor: pointer;
+  }
+
   @media (max-width: 1280px) {
     .logo {
       font-size: 75%;

@@ -8,6 +8,7 @@ import EditUser from "./pages/EditUser/EditUser";
 import AddUser from "./pages/AddUser/AddUser";
 import NotFound from "./pages/NotFound";
 import News from "./pages/News/News.js";
+import Profile from "./pages/Profile/Profile.js";
 
 // Offline plugin is only necessary in production
 if (process.env.NODE_ENV === 'production') {
@@ -33,8 +34,8 @@ const router = createBrowserRouter([
         element: <News />,
       },
       {
-        path: "/EditUser",
-        element: <EditUser />,
+        path: "/profile",
+        element: <Profile />,
       },
       {
         path: "/AddUser",

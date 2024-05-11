@@ -22,17 +22,6 @@
   font-weight: 800;
 }
 
-.table {
-  text-align: center;
-  margin: auto;
-  width: 500px;
-  height: 500px;
-}
-
-.listItem {
-  background-color: lightblue;
-}
-
 .messages-place {
   height: 130px;
 }

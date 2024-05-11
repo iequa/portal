@@ -8,4 +8,5 @@
 @import url(Components/NewsWidget/NewsWidget.css);
 @import url(pages/News/News.css);
 @import url(Components/ServiceProvisionPopup/ServiceProvisionPopup.css);
-@import url(Components/RecordsCalendar/RecordsCalendar.css)
+@import url(Components/RecordsCalendar/RecordsCalendar.css);
+@import url(pages/Profile/Profile.css);
