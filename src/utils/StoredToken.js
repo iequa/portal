@@ -6,11 +6,20 @@ class StoredToken {
     sessionInfo = {
         token: undefined,
         timeStamp: undefined,
+        login: "",
+        pass: "",
     };
+
+    messages = {
+        infoMessage: "",
+        errorMessage: "",
+    };
+
     logged = false;
+
     userInfo = {
         name: "",
-        pol: ""
+        pol: "",
     };
     popupStore = new PopupStore;
     loginWindow = false;
@@ -34,20 +43,14 @@ class StoredToken {
         return diff > TOKEN_TTL_MS;
     };
     
-    setToken(access_token) {
-        console.log("set " + access_token);
-        this.sessionInfo = {
-            token: access_token,
-            timeStamp: new Date().getTime(),
-        }
+    setToken(access_token, login, pass) {
+        this.sessionInfo.token = access_token;
+        this.sessionInfo.timeStamp = new Date().getTime();
+        this.sessionInfo.login = login;
+        this.sessionInfo.pass = pass;
+        const ls = window.localStorage;
+        ls.setItem("sessionData", JSON.stringify(this.sessionInfo));
         this.logged = true;
-    };
-    
-    removeToken() {
-        this.sessionInfo = {
-            token: undefined,
-            timeStamp: undefined,
-        };
     };
     
     getToken() {
@@ -75,6 +78,34 @@ class StoredToken {
     getUserName() {
         return this.userInfo.name;
     }
+
+    setSessionInfo(sessionInfo) {
+        this.sessionInfo = sessionInfo;
+    }
+
+    setInfoMessage(infoMessage) {
+        this.messages.infoMessage = infoMessage;
+    }
+
+    setErrorMessage(errorMessage) {
+        this.messages.errorMessage = errorMessage;
+    }
+
+    clearMessages() {
+        this.messages.errorMessage = "";
+        this.messages.infoMessage = "";
+    }
+
+    getSessionInfo() {
+        let result = null;
+        console.log("exp " + this.isExpired());
+        if (this.isExpired()) {
+            return null;
+        }
+        const storedToken = this.sessionInfo.timeStamp;
+        storedToken && this.sessionInfo.token && (result = this.sessionInfo);
+        return result;
+    };
 
     isLogged() {
         return this.logged;

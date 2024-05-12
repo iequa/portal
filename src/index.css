@@ -18,3 +18,4 @@ h1,h2,h3,h4,h5 {
 @import url(Components/PopupMenu/PopupMenu.css);
 @import url(pages/Login/LoginPage.css);
 @import url(pages/Profile/Profile.css);
+@import url(Components/InfoLabel/InfoLabel.css);

@@ -3,7 +3,8 @@
     margin-top: 0%;
     cursor: pointer;
     display: grid;
-    grid-template-columns: auto 80% 10%;
+    font-family: "Open Sans", sans-serif;
+    grid-template-columns: auto 70% 15%;
     grid-template-rows: 100%;
     align-content: center;
     align-items: center;
@@ -19,10 +20,18 @@
   .maintext {
     text-align: center;
     align-content: center;
-    font-family: "Open Sans", sans-serif;
+    
     font-weight: 700;
     width: 100%;
     height: inherit;
+  }
+
+  .log__block {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-size: medium;
+    justify-content: space-evenly;
   }
 
   .user__info__label {

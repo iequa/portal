@@ -4,7 +4,6 @@ import "./index.css";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import Main from "./pages/Main/Mainpage.js";
 import App from "./App";
-import EditUser from "./pages/EditUser/EditUser";
 import AddUser from "./pages/AddUser/AddUser";
 import NotFound from "./pages/NotFound";
 import News from "./pages/News/News.js";

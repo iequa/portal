@@ -10,26 +10,28 @@
     flex-direction: row;
     justify-content: center;
     cursor: pointer;
+    gap: 2px;
 }
 
 .prev__short__title {
     margin-top: 0%;
     text-align: center;
-    border: solid 1px;
+    border-bottom: solid 1px #00608a;
 }
 
 .prev__short__body {
     margin-top: 0%;
     text-align: center;
-    border: solid 1px;
+    border-top: solid 1px #00608a;
+    border-bottom: solid 1px #00608a;
     margin-bottom: 0%;
 }
 
 .news__block__elem {
+    display: grid;
     width: 400px;
     height: 100%;
-    background-color: bisque;
-    border: solid 1px;
+    border: solid 1px #00608a;
 }
 
 .prev__img {

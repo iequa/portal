@@ -72,7 +72,7 @@ const Menu = () => {
             </div>
             <Button 
                     selector={"mob__menu__button_main"}
-                    content={"Основное меню"}
+                    content={"Меню"}
                     onClick={() => click_mobile("")}
                 />
             <div id="mob__menu" className="hidden">

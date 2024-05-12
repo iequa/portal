@@ -7,7 +7,7 @@ const ResultType = {
 };
 
 class Api {
-  backendUrl = "http://46.147.199.124:8085";
+  backendUrl = "http://192.168.0.164:8085";
 
   constructor(options) {
     this.options = options;
@@ -60,6 +60,9 @@ class Api {
       tokenStorage.setToken(response?.headers?.Token);
       tokenStorage.setIsLogged(true);
     }
+    if(await response?.message) {
+      tokenStorage.setInfoMessage(response?.message);
+    }
     if (response.ok) {
       switch (resultType) {
         case ResultType.JSON: {
@@ -93,6 +96,7 @@ class Api {
             innerMessage: errJson.causeMessage,
             innerCallStack: errJson.causeStackTrace,
           };
+          tokenStorage.setErrorMessage(errJson.errorMessage);
           break;
         }
         default: {
@@ -115,6 +119,14 @@ class Api {
         login: args.login,
         value: args.value,
       }),
+    };
+    return this._fetchData(url, body, args);
+  }
+
+  processLogout(args) {
+    const url = `${this.backendUrl}/process-logout`;
+    const body = {
+      method: "post",
     };
     return this._fetchData(url, body, args);
   }

@@ -86,62 +86,6 @@ const DonorBloodlight = () => {
                 }
             }
         });
-        // SetBloodData(
-            // [
-            //     {
-            //         name: "O(I)",
-            //         rh: [
-            //             {
-            //                 name: "Rh+",
-            //                 value: 1,
-            //             },
-            //             {
-            //                 name: "Rh-",
-            //                 value: 2,
-            //             }
-            //         ] 
-            //     },
-            //     {
-            //         name: "A(II)",
-            //         rh: [
-            //             {
-            //                 name: "Rh+",
-            //                 value: 1,
-            //             },
-            //             {
-            //                 name: "Rh-",
-            //                 value: 2,
-            //             }
-            //         ] 
-            //     },
-            //     {
-            //         name: "B(III)",
-            //         rh: [
-            //             {
-            //                 name: "Rh+",
-            //                 value: 1,
-            //             },
-            //             {
-            //                 name: "Rh-",
-            //                 value: 4,
-            //             }
-            //         ] 
-            //     },
-            //     {
-            //         name: "AB(IV)",
-            //         rh: [
-            //             {
-            //                 name: "Rh+",
-            //                 value: 3,
-            //             },
-            //             {
-            //                 name: "Rh-",
-            //                 value: 3,
-            //             }
-            //         ] 
-            //     }
-            // ]
-        // )
     },[])
 
     function getColorClass(num) {
@@ -165,7 +109,7 @@ const DonorBloodlight = () => {
             <div className="lightlist">
                 {bloodData.map(elem => {
                     return (
-                        <div key={elem.name} style={{border: "1px solid black"}}>
+                        <div key={elem.name} style={{border: "1px solid #00608a"}}>
                             <h3 className="bloodtext">{elem.name}</h3>
                             <div className="rh">
                             {elem.rhs.map(r => {
