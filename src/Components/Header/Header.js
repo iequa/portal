@@ -2,8 +2,9 @@ import React, { useEffect, useState } from "react";
 import Login from "../LoginComponent/Login";
 import { tokenStorage } from "../../utils/StoredToken";
 import { useNavigate } from "react-router-dom";
+import { observer } from "mobx-react";
 
-const Header = ({HeaderText, Logo, onImageClick}) => {
+const Header = observer(({HeaderText, Logo, onImageClick, tokenStorage}) => {
 
   const navigate = useNavigate();
   // const [log, setLog] = useState(false);
@@ -25,8 +26,10 @@ const Header = ({HeaderText, Logo, onImageClick}) => {
             </h1>
           </div>
           {console.log(tokenStorage)}
-          {tokenStorage.isLogged() ? <label className="user__info__label" onClick={() => navigate("/profile")}>{tokenStorage.getUserName()}</label> : <Login/>}
+          {tokenStorage.isLogged() 
+          ? <label onClick={() => navigate("/profile")}>{tokenStorage.getUserName()}</label> 
+          : <Login tokenStorage={tokenStorage}/>}
         </div>
     );
-}
+})
 export default Header;

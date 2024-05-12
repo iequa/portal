@@ -7,7 +7,7 @@ const ResultType = {
 };
 
 class Api {
-  backendUrl = "http://192.168.0.164:8085";
+  backendUrl = "http://46.147.199.124:8085";
 
   constructor(options) {
     this.options = options;

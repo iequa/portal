@@ -7,8 +7,9 @@ import NewsWidget from "../../Components/NewsWidget/NewsWidget";
 import DonorBloodlight from "../../Components/DonorBloodlight/DonorBloodlight";
 import ServiceProvisionPopup from "../../Components/ServiceProvisionPopup/ServiceProvisionPopup";
 import RecordsCalendar from "../../Components/RecordsCalendar/RecordsCalendar";
+import { observer } from "mobx-react";
 
-const Main = () => {
+const Main = observer(({tokenStorage}) => {
   const navigate = useNavigate();
   const [people, setPeople] = useState([]);
   const [currentPage, setCurrentPage] = useState(0);
@@ -123,6 +124,9 @@ const Main = () => {
           errorMessages.map((e) => <div>e</div>)
         )}
       </div>
+      {
+
+      }
       <Button
         Size={"medium"}
         selector={"btn-comp usr-add"}
@@ -139,6 +143,6 @@ const Main = () => {
       </div>
     </div>
   );
-};
+});
 
 export default Main;

@@ -1,0 +1,13 @@
+.login-page__container{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.login-page__block{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+    margin: 0px 0px 10px 0px;
+}

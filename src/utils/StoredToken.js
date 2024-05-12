@@ -1,4 +1,5 @@
 import { makeAutoObservable, reaction } from "mobx";
+import PopupStore from "./PopupStore";
 
 class StoredToken {
     
@@ -10,7 +11,9 @@ class StoredToken {
     userInfo = {
         name: "",
         pol: ""
-    }
+    };
+    popupStore = new PopupStore;
+    loginWindow = false;
     /**
      * Токен имеет фиксированное время жизни.
      * Важно, так как храним в localStorage и уменьшаем риск в случае xss.
@@ -75,6 +78,14 @@ class StoredToken {
 
     isLogged() {
         return this.logged;
+    }
+
+    setLoginWindow(loginWindow){
+        this.loginWindow = loginWindow;
+    }
+
+    clearPopupStore(popupStore){
+        this.popupStore = {};
     }
 }
 const tokenStorage = new StoredToken();

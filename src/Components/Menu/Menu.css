@@ -3,10 +3,11 @@
 }
 
 .menublock {
-    display: grid;
+    display: flex;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
     justify-content: center;
-    height: 39px;
+    height: 40px;
+    gap: 10px;
 }
 
 .mob__menu {
@@ -18,10 +19,21 @@
 }
 
 .menubutton {
-    background-color: red;
-    margin-left: 10px;
-    margin-right: 10px;
+    background-color: white;
     cursor: pointer;
+    border-radius: 10px;
+    border: 1px solid #00608a;
+    width: 120px;
+    color: #00608a;
+}
+
+.menubutton:hover {
+    background-color: #00608a;
+    cursor: pointer;
+    border-radius: 10px;
+    border: 1px solid white;
+    width: 120px;
+    color: white;
 }
 
 @media (max-width: 1023px) {

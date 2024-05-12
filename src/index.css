@@ -1,3 +1,9 @@
+h1,h2,h3,h4,h5 {
+    margin: 0px;
+    padding: 0px;
+}
+
+
 @import url(pages/Main/Mainpage.css);
 @import url(Components/Button/Button.css);
 @import url(Components/Input/InputNumber.css);
@@ -9,4 +15,6 @@
 @import url(pages/News/News.css);
 @import url(Components/ServiceProvisionPopup/ServiceProvisionPopup.css);
 @import url(Components/RecordsCalendar/RecordsCalendar.css);
+@import url(Components/PopupMenu/PopupMenu.css);
+@import url(pages/Login/LoginPage.css);
 @import url(pages/Profile/Profile.css);

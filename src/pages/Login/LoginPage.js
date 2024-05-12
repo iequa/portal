@@ -1,10 +1,40 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import InputString from "../../Components/Input/InputString";
 import Button from "../../Components/Button/Button";
 import { api } from "../../utils/api";
 import { tokenStorage } from "../../utils/StoredToken";
+import { observer } from "mobx-react";
 
-const LoginPage = () => {
+const LoginPage = observer(({tokenStorage}) => {
+
+    const [message, setMessage] = useState("")
+
+    useEffect(()=>{
+        tokenStorage.popupStore.footer = getFooter()
+    },[tokenStorage.loginWindow])
+
+    function getFooter () {
+        if(tokenStorage.loginWindow){
+            return (
+                <div className="popup__footer" 
+                onClick={(e)=>{
+                    tokenStorage.setLoginWindow(!tokenStorage.loginWindow)
+                    setMessage("")}}>
+                    <div>Зарегистрироваться</div>
+                </div>
+            )
+        } else {
+            return (
+                <div className="popup__footer" 
+                onClick={(e)=>{
+                    tokenStorage.setLoginWindow(!tokenStorage.loginWindow)
+                    setMessage("")}
+                    }>
+                    <div>Войти</div>
+                </div>
+            )
+        }
+    }
 
     let data = {
         userName: "",
@@ -37,15 +67,25 @@ const LoginPage = () => {
                         name: response.name,
                         pol: response.gender,
                     })
+                    setMessage(response.message);
+                    tokenStorage.popupStore.setOpenPopUp(false)
                 }
-                console.log(response);
             },
+            errorCallback: (err)=>{
+                setMessage(err.message);
+                tokenStorage.setIsLogged(false);
+                tokenStorage.popupStore.setOpenPopUp(false)
+            }
         })
     }
 
     return (
-        <div>
-            <label>Login</label>
+        
+        <div className="login-page__container">
+            {tokenStorage.loginWindow ? 
+            <>
+            <div className="login-page__block">
+            <label>Логин</label>
             <InputString
                 id={"log"}
                 value={data?.userPass}
@@ -53,8 +93,9 @@ const LoginPage = () => {
                 data.userName = val.target.value;
                 }}
             />
-            <br/>
-            <label>Pass</label>
+            </div>
+            <div className="login-page__block"> 
+            <label>Пароль</label>
             <InputString
                 id={"pass"}
                 value={data?.userPass}
@@ -62,10 +103,36 @@ const LoginPage = () => {
                 data.userName = val.target.value;
                 }}
             />
+            </div>
+           
             <Button content={"Войти"} onClick={() => sendData()}/>
+                {message}
+            </> 
+            :
+            <><div className="login-page__block">
+            <label>Введите свой email</label>
+            <InputString
+                id={"log"}
+                value={data?.userPass}
+                onChange={(val) => {
+                data.userName = val.target.value;
+                }}
+            />
+            </div>
+            <div className="login-page__block"> 
+            <label>Введите свой пароль</label>
+            <InputString
+                id={"pass"}
+                value={data?.userPass}
+                onChange={(val) => {
+                data.userName = val.target.value;
+                }}
+            />
+            </div>
+            <Button content={"Зарегистрироваться"} onClick={() => sendData()}/></>}
+            {message}
         </div>
-        
     )
-}
+})
 
 export default LoginPage;
