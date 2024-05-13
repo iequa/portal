@@ -7,9 +7,6 @@ const ServiceProvisionPopup = ({ id, innerElement, title, selector}) => {
 
     const [InnerElement, setInnerELement] = useState();
 
-
-    
-
     useEffect(() => {
       if (innerElement) {
         setInnerELement(innerElement);

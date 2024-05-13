@@ -20,6 +20,7 @@ class StoredToken {
     userInfo = {
         name: "",
         pol: "",
+        nextDonationDate: "",
     };
     popupStore = new PopupStore;
     loginWindow = false;
@@ -79,6 +80,10 @@ class StoredToken {
         return this.userInfo.name;
     }
 
+    setUserNextDonationDate() {
+        return this.userInfo.nextDonationDate;
+    }
+
     setSessionInfo(sessionInfo) {
         this.sessionInfo = sessionInfo;
     }
@@ -98,7 +103,6 @@ class StoredToken {
 
     getSessionInfo() {
         let result = null;
-        console.log("exp " + this.isExpired());
         if (this.isExpired()) {
             return null;
         }

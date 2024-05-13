@@ -45,6 +45,7 @@ const App = observer (() => {
                   tokenStorage.setUserInfo({
                       name: response.name,
                       pol: response.gender,
+                      nextDonationDate: response.nextDonationDate,
                   })
                   tokenStorage.popupStore.setOpenPopUp(false)
               }
@@ -78,7 +79,8 @@ const App = observer (() => {
   }
 
   return (
-   <><div className="plot" onClick={handleMouseClick}>
+   <>
+   <div className="plot" onClick={handleMouseClick}>
       <div>
         <Header 
           HeaderText={"Портал службы крови Тульской области"}
@@ -92,8 +94,7 @@ const App = observer (() => {
     </div>
     <PopupMenu popupStore={tokenStorage.popupStore}/>
     <InfoLabel 
-      textMessage={tokenStorage.messages.textMessage}
-      errorMessage={tokenStorage.messages.errorMessage}
+      tokenStorage={tokenStorage}
     />
     </>
   );

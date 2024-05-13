@@ -30,7 +30,6 @@ const Header = observer(({HeaderText, Logo, onImageClick, tokenStorage}) => {
             {HeaderText}
           </h1>
         </div>
-        {console.log(tokenStorage)}
         {tokenStorage.isLogged() 
         ? 
         <div className="log__block">

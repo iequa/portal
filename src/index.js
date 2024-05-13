@@ -4,7 +4,6 @@ import "./index.css";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import Main from "./pages/Main/Mainpage.js";
 import App from "./App";
-import AddUser from "./pages/AddUser/AddUser";
 import NotFound from "./pages/NotFound";
 import News from "./pages/News/News.js";
 import Profile from "./pages/Profile/Profile.js";
@@ -35,10 +34,6 @@ const router = createBrowserRouter([
       {
         path: "/profile",
         element: <Profile />,
-      },
-      {
-        path: "/AddUser",
-        element: <AddUser />,
       },
       {
         path: "*",

@@ -23,7 +23,7 @@
     margin: 0px 0px 0px 0px;
     text-align: center;
     align-content: center;
-    border: 1px black solid;
+    border: 1px #00608a solid;
 }
 
 .calendar__date__items {
@@ -50,7 +50,7 @@
     background-color: rgb(39, 187, 71);
     cursor: pointer;
     margin: 0px 0px 0px 0px;
-    border: 1px black solid;
+    border: 1px #00608a solid;
     text-align: center;
     align-content: center;
 }
@@ -65,7 +65,7 @@
 
 .btn__confirm {
     margin: 0 auto;
-    display: block;
+    display: none;
 }
 
 @media (max-width: 1024px) {

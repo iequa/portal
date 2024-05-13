@@ -39,6 +39,9 @@ class Api {
       })
       .then((result) => {
         args?.resolveCallback?.(result);
+        if (result?.message) {
+          tokenStorage.setInfoMessage(result?.message);
+        }
         return result;
       })
       .catch((err) => {
@@ -59,9 +62,6 @@ class Api {
     if(await response?.headers?.Token) {
       tokenStorage.setToken(response?.headers?.Token);
       tokenStorage.setIsLogged(true);
-    }
-    if(await response?.message) {
-      tokenStorage.setInfoMessage(response?.message);
     }
     if (response.ok) {
       switch (resultType) {
@@ -97,6 +97,18 @@ class Api {
             innerCallStack: errJson.causeStackTrace,
           };
           tokenStorage.setErrorMessage(errJson.errorMessage);
+          break;
+        }
+        case 401: {
+          errorObj = {
+            code: response.status,
+            message: errJson.errorMessage,
+            callStack: errJson.stackTrace,
+            innerMessage: errJson.causeMessage,
+            innerCallStack: errJson.causeStackTrace,
+          };
+          tokenStorage.setErrorMessage(errJson.errorMessage);
+          tokenStorage.setIsLogged(false);
           break;
         }
         default: {

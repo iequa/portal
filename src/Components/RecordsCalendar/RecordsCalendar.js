@@ -33,15 +33,14 @@ const RecordsCalendar = ({calendarType, title}) => {
                         const day = dt.getDate().toString().length === 1 ? '0' + dt.getDate().toString() : dt.getDate().toString();
                         let time = `${hrs.length === 1 ? '0' + hrs : hrs}:${mnts.length === 1 ? '0' + mnts : mnts}`;
                         let r = Week.find(f => f.day == day && f.times.some((item) => item.available && item.time === time));
-                        console.log(r);
-                        r.times.forEach( (timeObj) => {
+                        r?.times?.forEach( (timeObj) => {
                             if (timeObj.time === time) {
                                 timeObj.available = false;
                             }
                         })
                     })
                     setCalendarData(res);
-                    setCalendarType(response.type)
+                    setCalendarType(response.type);
                 },
             });
         }
@@ -55,7 +54,10 @@ const RecordsCalendar = ({calendarType, title}) => {
             if (elem) {
                 elem.className = "calendar__time__item";
             }
-            btnConfirm[0].style.display = "block";
+            const btype = document?.getElementById("bloodtype-select");
+            if (btype.value !== "") {
+                btnConfirm[0].style.display = "block";
+            }
             setSelectedElement(e.target.id);
         }
         else {
@@ -70,7 +72,8 @@ const RecordsCalendar = ({calendarType, title}) => {
 
     function tryAddRecord() {
         let selectedDate = document?.getElementsByClassName("calendar__time__item selected");
-        if (selectedDate?.length === 1) {
+        const btype = document?.getElementById("bloodtype-select");
+        if (selectedDate?.length === 1 && btype.value !== "") {
             const id = Number.parseInt(selectedDate[0].id.slice(5, 6)); //id строки из которой берётся дата
             const time = selectedDate[0].innerHTML; // время
             let dayToSelect = Week.filter((headerEl, index) => { 
@@ -80,53 +83,33 @@ const RecordsCalendar = ({calendarType, title}) => {
             });
             let dts0 = dayToSelect[0];
             //Дата по человечески
+            console.log("dts0 " + dts0.month);
             let selectedDatetime = {
-
                 day: dts0.day.length === 1 ? "0" + dts0.day : dts0.day, 
                 month: dts0.month.length === 1 ? "0" + dts0.month : dts0.month,
                 year: dts0.year,
                 time: time,
+                donationType: btype.value,
             };
-            console.log(selectedDatetime);
-            api.setServiceProvisionDate({
-                body: {selectedDatetime : selectedDatetime},
-                resolveCallback: (response) => {
-                    let localWeek = prepareWeek();
-                    setWeek(localWeek);
-                }
-            })
+            const dateInString = `${selectedDatetime.year}-${selectedDatetime.month}-${selectedDatetime.day}`;
+            const date = new Date(dateInString).getTime();
+            const nextAvailDate = new Date(tokenStorage.setUserNextDonationDate()).getTime();
+            if (nextAvailDate > date) {
+                const ourDate = `${selectedDatetime.day}-${selectedDatetime.month}-${selectedDatetime.year}`;
+                tokenStorage.setErrorMessage("Вам недоступна запись на данную дату в связи с откатом после последней донации до " + ourDate)
+            }
+            else {
+                api.setServiceProvisionDate({
+                    body: {selectedDatetime : selectedDatetime},
+                    resolveCallback: (response) => {
+                        let localWeek = prepareWeek();
+                        setWeek(localWeek);
+                        setSelectedElement("");
+                    }
+                })
+            }
         }
     }
-
-    return (
-        <div className="calendar__common">
-            <h3 className="calendar__title">{title}</h3>
-            <div className="calendar__date__headers">
-                {Week.map((headerEl, index) => {return(<h4 key={index} className="calendar__date__title">{headerEl.day}-{headerEl.month}</h4>)})}
-            </div>
-            <div className="calendar__date__items">
-                {Week ? (Week.map((element, index) => {
-                    let i = 0;
-                    return (
-                        <div key={index} className="calendar__date__items__rows">
-                            {element.times.length > 0 ? element.times.map(el => {
-                                const childIndex = `item ${index}_${i++}`;
-                                return (
-                                    <p 
-                                    id={childIndex} 
-                                    key={childIndex} 
-                                    className={el.available ? "calendar__time__item" : "calendar__time__item not__avaliable"} 
-                                    onClick={(e) => highlightSelection(e)}>
-                                        {el.time}
-                                    </p>
-                                )
-                            }) : ""}
-                        </div>
-                )})) : (<div>Запись недоступна</div>)}
-            </div>
-            <Button selector={"btn__confirm"} size={"medium"} content={"Выбрать"} onClick={() => tryAddRecord()}/>
-        </div>
-    )
 
     function prepareWeek() {
         let localWeek = new Array(7);
@@ -158,6 +141,47 @@ const RecordsCalendar = ({calendarType, title}) => {
         }
         return localWeek;
     }
+
+    return (
+        <div className="calendar__common">
+            <h3 className="calendar__title">{title}</h3>
+            <form>
+                <label>Ваша группа крови</label>
+                <select name="bloodtype" id="bloodtype-select">
+                    <option value="">-- Выберите вашу группу крови и её резус фактор --</option>
+                    <option value="0">O Rh+</option>
+                    <option value="1">I Rh+</option>
+                    <option value="2">II Rh+</option>
+                    <option value="3">III Rh+</option>
+                    <option value="4">Любая группа с Rh-</option>
+                </select>
+            </form>
+            <div className="calendar__date__headers">
+                {Week.map((headerEl, index) => {return(<h4 key={index} className="calendar__date__title">{headerEl.day}-{headerEl.month}</h4>)})}
+            </div>
+            <div className="calendar__date__items">
+                {Week ? (Week.map((element, index) => {
+                    let i = 0;
+                    return (
+                        <div key={index} className="calendar__date__items__rows">
+                            {element.times.length > 0 ? element.times.map(el => {
+                                const childIndex = `item ${index}_${i++}`;
+                                return (
+                                    <p 
+                                    id={childIndex} 
+                                    key={childIndex} 
+                                    className={el.available ? "calendar__time__item" : "calendar__time__item not__avaliable"} 
+                                    onClick={(e) => highlightSelection(e)}>
+                                        {el.time}
+                                    </p>
+                                )
+                            }) : ""}
+                        </div>
+                )})) : (<div>Запись недоступна</div>)}
+            </div>
+            <Button selector={"btn__confirm"} size={"medium"} content={"Выбрать"} onClick={() => tryAddRecord()}/>
+        </div>
+    )
 }
 
 export default RecordsCalendar;

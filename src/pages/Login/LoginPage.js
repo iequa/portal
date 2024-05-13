@@ -18,8 +18,7 @@ const LoginPage = observer(({tokenStorage}) => {
             return (
                 <div className="popup__footer" 
                 onClick={(e)=>{
-                    tokenStorage.setLoginWindow(!tokenStorage.loginWindow)
-                    setMessage("")}}>
+                    tokenStorage.setLoginWindow(!tokenStorage.loginWindow)}}>
                     <div>Зарегистрироваться</div>
                 </div>
             )
@@ -27,8 +26,7 @@ const LoginPage = observer(({tokenStorage}) => {
             return (
                 <div className="popup__footer" 
                 onClick={(e)=>{
-                    tokenStorage.setLoginWindow(!tokenStorage.loginWindow)
-                    setMessage("")}
+                    tokenStorage.setLoginWindow(!tokenStorage.loginWindow)}
                     }>
                     <div>Войти</div>
                 </div>
@@ -61,13 +59,12 @@ const LoginPage = observer(({tokenStorage}) => {
                     tokenStorage.setUserInfo({
                         name: response.name,
                         pol: response.gender,
+                        nextDonationDate: response.nextDonationDate,
                     })
-                    setMessage(response.message);
                     tokenStorage.popupStore.setOpenPopUp(false)
                 }
             },
             errorCallback: (err)=>{
-                setMessage(err.message);
                 tokenStorage.setIsLogged(false);
                 tokenStorage.popupStore.setOpenPopUp(false)
             }
