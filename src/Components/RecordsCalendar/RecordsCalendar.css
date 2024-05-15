@@ -61,6 +61,7 @@
 
 .not__avaliable {
     background-color: rgb(255, 255, 255);
+    cursor: not-allowed;
 }
 
 .btn__confirm {

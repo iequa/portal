@@ -30,6 +30,25 @@ const Profile = () => {
         }
     },[]);
 
+    function openDropdown() {
+        document.getElementById("myDropdown").classList.toggle("showdd");
+    }
+    
+    //закрытие дд списка при клике не на него
+    window.onclick = function(event) {
+      if (!event.target.matches('.dropbtn')) {
+    
+        var dropdowns = document.getElementsByClassName("dropdown-content");
+        var i;
+        for (i = 0; i < dropdowns.length; i++) {
+          var openDropdown = dropdowns[i];
+          if (openDropdown.classList.contains('showdd')) {
+            openDropdown.classList.remove('showdd');
+          }
+        }
+      }
+    }
+
     return (
     <div>
         <div className="main__label info__header">
@@ -53,6 +72,13 @@ const Profile = () => {
             </div>
             <div className="main__value">
                 {userInfo?.gender}
+            </div>
+        </div>
+        <div className="dropdown">
+            <button onClick={() => openDropdown()} className="dropbtn">Специальные функции</button>
+            <div id="myDropdown" className="dropdown-content">
+                <a onClick={() => navigate("/get-stats")}>Выгрузка файлов с записями</a>
+                <a onClick={() => navigate("/news-list")}>Добавление/редактирование новостей</a>
             </div>
         </div>
         <div className="services__info">

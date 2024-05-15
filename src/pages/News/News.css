@@ -20,8 +20,7 @@
 
 .news__img {
     display: block;
-    width: 8em;
-    max-width: 400px;
+    max-width: 100%;
     margin-left: auto;
     margin-right: auto;
 }

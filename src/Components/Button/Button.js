@@ -13,9 +13,9 @@ function setSize(size) {
   }
 }
 
-const Button = ({ selector, content, onClick, size }) => {
+const Button = ({ id, selector, content, onClick, size }) => {
   return (
-    <button className={selector} onClick={onClick} style={setSize(size)}>
+    <button id={id} className={selector} onClick={onClick} style={setSize(size)}>
       {content}
     </button>
   );

@@ -5,6 +5,7 @@ import { render } from 'react-dom'
 import reactRender from '@bbob/react/es/render'
 import reactPreset from '@bbob/preset-react/es'
 import { api } from "../../utils/api";
+import Button from "../Button/Button";
 
 
 const NewsWidget = () => {
@@ -33,14 +34,15 @@ const NewsWidget = () => {
 
     useEffect(() => {
         api.getNewsPreviews({
-            page: 0,
+            page: -1,
             resolveCallback: (response) => {
                 let arr = [];
-                response.newsPreviews.forEach((elem) => {
+                response.newsPreviewData.forEach((elem) => {
                     let arrelem = {
                         shortTitle: elem.shortTitle,
                         shortBody: elem.shortBody,
-                        previewImage:  elem.previewImage,
+                        image:  elem.image,
+                        date: elem.date,
                         id: elem.id
                     }
                     arr.push(arrelem);
@@ -59,12 +61,20 @@ const NewsWidget = () => {
                     return(
                         <div id={`news__elem__${elem.id}`} className="news__block__elem" onClick={onClick} key={`news__elem__${elem.id}`}>
                             <h3 className="prev__short__title">{elem.shortTitle}</h3>
-                            <img className="prev__img" src={`data:image/jpeg;base64,${elem.previewImage}`}/>
+                            {elem.image != null ?
+                                <img className="prev__img" src={elem.image != null ? `data:image/jpeg;base64,${elem.image}` : ""}/>
+                            : ""}
                             <p className="prev__short__body">{elem.shortBody}</p>
+                            <label className="prev__date">{new Date(elem.date).toLocaleDateString()}</label>
                         </div>
                     )
                 })}
             </div>
+            <Button 
+                selector={"ref__button"} 
+                content={"Все новости"} 
+                onClick={()=>navigate("/news-list")}
+            />
         </div>
     )
 }

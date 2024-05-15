@@ -24,14 +24,14 @@ const News = () => {
     },[])
 
     useEffect(() => {
-        api.getNewsForPage({
+        api.getNewsById({
             pageId: id,
             resolveCallback: (response) => {
                 setPage({
                     title: response.title,
                     body: response.body,
                     date: response.date,
-                    img: response.img
+                    image: response.image
                 })
             },
           })
@@ -40,7 +40,7 @@ const News = () => {
     return(
         <div className="news__place">
             <h1 className="news__title">{page?.title}</h1>
-            <img className="news__img" src={page ? `data:img/jpeg;base64,${page?.img}` : ''}/>
+            <img className="news__img" src={page?.image != null ? `data:img/jpeg;base64,${page?.image}` : ''}/>
             <div className="news__body">
                 {page?.body?.length > 0 ? toReact(page?.body) : toReact("")}
             </div>

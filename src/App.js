@@ -46,6 +46,7 @@ const App = observer (() => {
                       name: response.name,
                       pol: response.gender,
                       nextDonationDate: response.nextDonationDate,
+                      specialFunctions: response.specialFunctions,
                   })
                   tokenStorage.popupStore.setOpenPopUp(false)
               }

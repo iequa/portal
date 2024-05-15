@@ -21,6 +21,7 @@ class StoredToken {
         name: "",
         pol: "",
         nextDonationDate: "",
+        specialFunctions: false,
     };
     popupStore = new PopupStore;
     loginWindow = false;
@@ -78,6 +79,10 @@ class StoredToken {
 
     getUserName() {
         return this.userInfo.name;
+    }
+
+    getUserSpecFuncAvaliability() {
+        return this.userInfo.specialFunctions;
     }
 
     setUserNextDonationDate() {

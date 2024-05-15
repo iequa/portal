@@ -1,0 +1,26 @@
+.editor__main__container {
+    display: grid;
+    align-content: center;
+
+}
+
+.editor__label__component {
+    text-align: center;
+    font-family: "Open Sans", sans-serif;
+    font-weight: 600;
+}
+
+.editor__input {
+    color: black;
+}
+
+.editor__rtb{
+    min-height: 50px;
+    max-width: 100%;
+    resize: vertical;
+    color: black;
+}
+
+.hide {
+    display: none;
+}

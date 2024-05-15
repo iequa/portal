@@ -1,0 +1,19 @@
+.news__elements__block {
+    display: inline-flex;
+    width: 100%;
+    min-height: 300px;
+    flex-direction: column;
+    justify-content: center;
+    cursor: pointer;
+    gap: 2px;
+    align-items: center;
+}
+
+.news__block__elem {
+    display: grid;
+    width: 400px;
+    min-height: 300px;
+    height: 100%;
+    border: solid 1px #00608a;
+    align-content: space-between;
+}

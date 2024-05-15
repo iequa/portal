@@ -162,7 +162,7 @@ class Api {
     return this._fetchData(url, body, args);
   }
 
-  getNewsForPage(args) {
+  getNewsById(args) {
     const url = `${this.backendUrl}/get-news-data`;
     const body = {
       method: "post",
@@ -180,6 +180,18 @@ class Api {
       body: JSON.stringify({
         type: args?.body?.type,
         days: args?.body?.days,
+      }),
+    };
+    return this._fetchData(url, body, args);
+  }
+
+  setNewsData(args) {
+    const url = `${this.backendUrl}/set-news-data`;
+    const body = {
+      method: "post",
+      body: JSON.stringify({
+        id: args.id,
+        data: args.data,
       }),
     };
     return this._fetchData(url, body, args);
