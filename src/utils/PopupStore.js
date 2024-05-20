@@ -3,7 +3,7 @@ import { makeAutoObservable } from "mobx";
 export default class PopupStore {
   id = "";
   title = "";
-  crose = false;
+  crose = true;
   main = {};
   footer = "";
   openPopUp = false;
