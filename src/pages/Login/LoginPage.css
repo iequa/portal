@@ -1,5 +1,6 @@
 .login-page__container{
     display: flex;
+    font-family: "Open Sans", sans-serif;
     flex-direction: column;
     gap: 20px;
 }

@@ -44,7 +44,6 @@ const App = observer (() => {
                   tokenStorage.setIsLogged(true);
                   tokenStorage.setUserInfo({
                       name: response.name,
-                      pol: response.gender,
                       nextDonationDate: response.nextDonationDate,
                       specialFunctions: response.specialFunctions,
                   })

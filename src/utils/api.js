@@ -123,6 +123,21 @@ class Api {
     }
   }
 
+  processRegister(args) {
+    const url = `${this.backendUrl}/process-register`;
+    const body = {
+      method: "post",
+      body: JSON.stringify({
+        login: args.login,
+        value: args.value,
+        name: args.name,
+        surname: args.surname,
+        date: args.date,
+      }),
+    };
+    return this._fetchData(url, body, args);
+  }
+
   processLogin(args) {
     const url = `${this.backendUrl}/process-login`;
     const body = {

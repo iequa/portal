@@ -17,7 +17,7 @@ const Profile = () => {
                         setUserInfo({
                             name: response.name,
                             surname: response.surname,
-                            gender: response.gender,
+                            login: response.login,
                             serviceInfos: [...response.serviceInfos],
                         });
                     }
@@ -68,19 +68,21 @@ const Profile = () => {
                 {userInfo?.name}
             </div>
             <div className="main__label">
-                Пол:
+                Электронная почта:
             </div>
             <div className="main__value">
-                {userInfo?.gender}
+                {userInfo?.login}
             </div>
         </div>
-        <div className="dropdown">
+        {tokenStorage.isUserAdmin() ? (
+            <div className="dropdown">
             <button onClick={() => openDropdown()} className="dropbtn">Специальные функции</button>
             <div id="myDropdown" className="dropdown-content">
                 <a onClick={() => navigate("/get-stats")}>Выгрузка файлов с записями</a>
                 <a onClick={() => navigate("/news-list")}>Добавление/редактирование новостей</a>
             </div>
         </div>
+        ) : ""}
         <div className="services__info">
             <div className="services__label__main">
                 Оказанные услуги

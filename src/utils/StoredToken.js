@@ -19,7 +19,6 @@ class StoredToken {
 
     userInfo = {
         name: "",
-        pol: "",
         nextDonationDate: "",
         specialFunctions: false,
     };
@@ -51,6 +50,7 @@ class StoredToken {
         this.sessionInfo.login = login;
         this.sessionInfo.pass = pass;
         const ls = window.localStorage;
+        ls.removeItem("sessionData");
         ls.setItem("sessionData", JSON.stringify(this.sessionInfo));
         this.logged = true;
     };
@@ -79,6 +79,10 @@ class StoredToken {
 
     getUserName() {
         return this.userInfo.name;
+    }
+
+    isUserAdmin() {
+        return this.userInfo.specialFunctions;
     }
 
     getUserSpecFuncAvaliability() {

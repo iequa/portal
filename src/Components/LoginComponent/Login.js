@@ -8,7 +8,12 @@ const Login = observer(({tokenStorage}) => {
     const [registration, setRegistration] = useState(false)
     const [title, setTitle] = useState("Вход в учётную запись");
 
-    
+    window.onkeyup = function(event) {
+        if (event.keyCode == 27) {
+          var popup = document.getElementsByClassName("popup-menu__container");
+          //popup[0].className = ".hide";
+        }
+      }
 
     function openPopUp () {
         tokenStorage.setLoginWindow(true)
@@ -19,7 +24,7 @@ const Login = observer(({tokenStorage}) => {
     }
 
     return (
-        <div onClick={(e)=>{openPopUp()}}>
+        <div id="cust_popup" onClick={(e)=>{openPopUp()}}>
             Войти
             {/* <ServiceProvisionPopup
                 title={"Вход в учётную запись"}
