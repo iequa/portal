@@ -20,12 +20,14 @@
     background-color: white;
     padding: 20px;
     border-radius: 20px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
 }
 
 .popup-menu__block_header{
     display: flex;
     width: 100%;
     justify-content: center;
+    position: relative;
 }
 
 .popup-menu__block_footer{
@@ -36,4 +38,15 @@
     cursor: pointer;
     font-weight: 700;
     flex-direction: row;
+}
+
+.popup-menu__crose{
+    display: flex;
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    /* width: 40px; */
+    height: -webkit-fill-available;
+    align-items: center;
+    cursor: pointer;
 }
