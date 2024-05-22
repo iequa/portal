@@ -37,6 +37,7 @@ const LoginPage = observer(({tokenStorage}) => {
     let data = {
         userLog: "",
         userPass: "",
+        userPassSecond: "",
         userName: "",
         userSurname: "",
         userDate: "",
@@ -78,8 +79,7 @@ const LoginPage = observer(({tokenStorage}) => {
         }
     }
 
-    function getCryptPass(login) {
-        const pass = document.getElementById("pass").value;
+    function getCryptPass(login, pass) {
         let allText = login + "||" +  pass;
         let pass2 = "";
         for (let i = 0; i < allText.length; i++) {
@@ -93,7 +93,13 @@ const LoginPage = observer(({tokenStorage}) => {
             tokenStorage.setErrorMessage("Пройдите капчу");
         } else {
             const login = document.getElementById("log").value;
-            const sha256Hash = getCryptPass(login);
+            const pass = document.getElementById("pass").value;
+            const pass2 = document.getElementById("pass-approve").value;
+            if (pass !== pass2) {
+                tokenStorage.setErrorMessage("Введённые пароли не совпадают");
+                return;
+            }
+            const sha256Hash = getCryptPass(login, pass);
             api.processRegister ({
                 login: login,
                 value: sha256Hash,
@@ -130,6 +136,7 @@ const LoginPage = observer(({tokenStorage}) => {
                 onChange={(val) => {
                 data.userPass = val.target.value;
                 }}
+                type={"password"}
             />
             </div>
             <ReCAPTCHA
@@ -141,54 +148,66 @@ const LoginPage = observer(({tokenStorage}) => {
             </> 
             :
             <><div className="login-page__block">
-            <label>Введите свой email</label>
+                <label>Введите свой email</label>
+                <InputString
+                    id={"log"}
+                    value={data?.userLog}
+                    onChange={(val) => {
+                    data.userLog = val.target.value;
+                    }}
+                />
+            </div>
+            <div className="login-page__block"> 
+                <label>Введите свой пароль</label>
+                <InputString
+                    id={"pass"}
+                    value={data?.userPass}
+                    onChange={(val) => {
+                    data.userPass = val.target.value;
+                    }}
+                    type={"password"}
+                />
+            </div>
+            <div className="login-page__block"> 
+            <label>Повторите пароль</label>
             <InputString
-                id={"log"}
-                value={data?.userLog}
+                id={"pass-approve"}
+                value={data?.userPassSecond}
                 onChange={(val) => {
-                data.userLog = val.target.value;
+                data.userPassSecond = val.target.value;
                 }}
+                type={"password"}
             />
             </div>
             <div className="login-page__block"> 
-            <label>Введите свой пароль</label>
-            <InputString
-                id={"pass"}
-                value={data?.userPass}
-                onChange={(val) => {
-                data.userPass = val.target.value;
-                }}
-            />
+                <label>Ваше имя</label>
+                <InputString
+                    id={"name"}
+                    value={data?.userName}
+                    onChange={(val) => {
+                    data.userName = val.target.value;
+                    }}
+                />
             </div>
             <div className="login-page__block"> 
-            <label>Ваше имя</label>
-            <InputString
-                id={"name"}
-                value={data?.userName}
-                onChange={(val) => {
-                data.userName = val.target.value;
-                }}
-            />
+                <label>Ваша фамилия</label>
+                <InputString
+                    id={"surname"}
+                    value={data?.userSurname}
+                    onChange={(val) => {
+                    data.userSurname = val.target.value;
+                    }}
+                />
             </div>
             <div className="login-page__block"> 
-            <label>Ваша фамилия</label>
-            <InputString
-                id={"surname"}
-                value={data?.userSurname}
-                onChange={(val) => {
-                data.userSurname = val.target.value;
-                }}
-            />
-            </div>
-            <div className="login-page__block"> 
-            <label>Ваша дата рождения в формате ДД.ММ.ГГГГ</label>
-            <InputString
-                id={"date"}
-                value={data?.userDate}
-                onChange={(val) => {
-                data.userDate = val.target.value;
-                }}
-            />
+                <label>Ваша дата рождения в формате ДД.ММ.ГГГГ</label>
+                <InputString
+                    id={"date"}
+                    value={data?.userDate}
+                    onChange={(val) => {
+                    data.userDate = val.target.value;
+                    }}
+                />
             </div>
             <ReCAPTCHA
                 ref={recaptchaRef}

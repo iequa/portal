@@ -31,7 +31,7 @@ const PopupMenu = observer(({ popupStore}) => {
         <div className="popup-menu__block">
         <header className="popup-menu__block_header">
             <h2>{popupStore.title}</h2>
-            {popupStore.crose ? <div className="popup-menu__crose" onClick={ClosePopUp}>SVG</div> : null}
+            {popupStore.crose ? <div className="popup-menu__crose" onClick={ClosePopUp}>X</div> : null}
             </header>
         <main>{popupStore.main}</main>
         <footer className="popup-menu__block_footer">

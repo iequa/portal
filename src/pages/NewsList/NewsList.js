@@ -75,9 +75,9 @@ const NewsList = () => {
                           <div id={`news__elem__${elem.id}`} className="news__block__elem" onClick={onClick}>
                               <h3 className="prev__short__title">{elem.shortTitle}</h3>
                               {elem.image != null ?
-                                  <img className="prev__img" src={elem.image != null ? `data:image/jpeg;base64,${elem.image}` : ""}/>
+                                  <img className="prev__img__list" src={elem.image != null ? `data:image/jpeg;base64,${elem.image}` : ""}/>
                               : ""}
-                              <p className="prev__short__body">{elem.shortBody}</p>
+                              <p className="prev__short__body__list">{elem.shortBody}</p>
                               <label className="prev__date">{new Date(elem.date).toLocaleDateString()}</label>
                           </div>
                           {tokenStorage.getUserSpecFuncAvaliability() ? <div onClick={() => navigate("/news-editor?id=" + elem.id)}>Редактировать</div> : ""}
