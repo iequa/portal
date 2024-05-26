@@ -21,3 +21,4 @@ h1,h2,h3,h4,h5 {
 @import url(Components/InfoLabel/InfoLabel.css);
 @import url(pages/NewsList/NewsList.css);
 @import url(pages/NewsEditor/NewsEditor.css);
+@import url(Components/Input/InputOther.css);

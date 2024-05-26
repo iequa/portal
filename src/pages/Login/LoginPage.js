@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import InputString from "../../Components/Input/InputString";
 import Button from "../../Components/Button/Button";
 import { api } from "../../utils/api";
-import { tokenStorage } from "../../utils/StoredToken";
 import ReCAPTCHA from "react-google-recaptcha";
 import { observer } from "mobx-react";
 

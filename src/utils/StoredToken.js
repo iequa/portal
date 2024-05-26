@@ -89,8 +89,12 @@ class StoredToken {
         return this.userInfo.specialFunctions;
     }
 
-    setUserNextDonationDate() {
+    getUserNextDonationDate() {
         return this.userInfo.nextDonationDate;
+    }
+
+    setUserNextDonationDate(date) {
+        return this.userInfo.nextDonationDate = date;
     }
 
     setSessionInfo(sessionInfo) {
@@ -103,6 +107,10 @@ class StoredToken {
 
     setErrorMessage(errorMessage) {
         this.messages.errorMessage = errorMessage;
+    }
+
+    setServiceProvisionDate(date) {
+        this.userInfo.errorMessage = errorMessage;
     }
 
     clearMessages() {

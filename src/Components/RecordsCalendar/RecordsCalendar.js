@@ -83,7 +83,6 @@ const RecordsCalendar = ({calendarType, title}) => {
             });
             let dts0 = dayToSelect[0];
             //Дата по человечески
-            console.log("dts0 " + dts0.month);
             let selectedDatetime = {
                 day: dts0.day.length === 1 ? "0" + dts0.day : dts0.day, 
                 month: dts0.month.length === 1 ? "0" + dts0.month : dts0.month,
@@ -93,10 +92,10 @@ const RecordsCalendar = ({calendarType, title}) => {
             };
             const dateInString = `${selectedDatetime.year}-${selectedDatetime.month}-${selectedDatetime.day}`;
             const date = new Date(dateInString).getTime();
-            const nextAvailDate = new Date(tokenStorage.setUserNextDonationDate()).getTime();
-            if (nextAvailDate > date) {
+            const nextAvailDate = new Date(tokenStorage.getUserNextDonationDate());
+            if (nextAvailDate.getTime() > date) {
                 const ourDate = `${selectedDatetime.day}-${selectedDatetime.month}-${selectedDatetime.year}`;
-                tokenStorage.setErrorMessage("Вам недоступна запись на данную дату в связи с откатом после последней донации до " + ourDate)
+                tokenStorage.setErrorMessage("Вам недоступна запись на данную дату в связи с откатом после последней донации до " + nextAvailDate.toLocaleDateString())
             }
             else {
                 api.setServiceProvisionDate({
@@ -105,6 +104,7 @@ const RecordsCalendar = ({calendarType, title}) => {
                         let localWeek = prepareWeek();
                         setWeek(localWeek);
                         setSelectedElement("");
+                        tokenStorage.setUserNextDonationDate(response.nextDonationDate)
                     }
                 })
             }

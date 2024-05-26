@@ -1,3 +1,4 @@
+import { json } from "react-router-dom";
 import { tokenStorage } from "./StoredToken";
 
 const ResultType = {
@@ -225,17 +226,6 @@ class Api {
     return this._fetchData(url, body, args);
   }
 
-  getUsersList(args) {
-    const url = `${this.backendUrl}/get-users`;
-    const body = {
-      method: "post",
-      body: JSON.stringify({
-        page: args.page,
-      }),
-    };
-    return this._fetchData(url, body, args);
-  }
-
   getUserInfo(args) {
     const url = `${this.backendUrl}/get-user-data`;
     const body = {
@@ -244,13 +234,15 @@ class Api {
     return this._fetchData(url, body, args);
   }
 
-  editUserInfo(args) {
-    const url = `${this.backendUrl}/edit-user`;
+  getDateStat(args) {
+    console.log(args);
+    const url = `${this.backendUrl}/get-date-stat`;
     const body = {
-      method: "post",
-      body: JSON.stringify({
-        user: args?.body?.user,
-      }),
+      method: "POST",
+      body: JSON.stringify ({
+        firstDate: args?.firstDate,
+        secondDate: args?.secondDate,
+      })
     };
     return this._fetchData(url, body, args);
   }
@@ -276,6 +268,17 @@ class Api {
       }),
     };
     return this._fetchData(url, body, args);
+  }
+
+  saveFile(blob, filename) {
+    const blobb = new Blob([blob], { type: 'application/vnd.ms-excel' });
+    console.log(blob);
+    const url = window.URL.createObjectURL(blobb);
+    const link = document.createElement('a');
+    link.href = url;
+    link.setAttribute('download', filename);
+    document.body.appendChild(link);
+    link.click();
   }
 }
 
