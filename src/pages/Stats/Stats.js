@@ -17,7 +17,6 @@ const Stats = () => {
     const regex = new RegExp('^\\d{4}-\\d{2}-\\d{2}$');
     const first = startDate;
     const second = endDate;
-    console.log(`first: ${first}; second:${second}`);
     if (!regex.test(first)) {
       tokenStorage.setErrorMessage('Первая дата не задана!');
       return;
@@ -30,18 +29,20 @@ const Stats = () => {
       firstDate: new Date(first).toISOString(),
       secondDate: new Date(second).toISOString(),
       resolveCallback: (response) => {
-        api.saveFile(response?.respFile, response?.respFileName);
+        if (response?.respFile) {
+          api.saveFile(response?.respFile, response?.respFileName);
+        }
       }
     })
   }
 
   return (
-    <div>
-      <div>Отчётность</div>
+    <div className="stats__base">
+      <h2 className="stats__header">Отчётность</h2>
       <div>
         Выберите промежуток дат, за который хотите получить отчёт:
-        <div>
-          Начало
+        <div className="label__date">
+          Начало:
           <InputOther
             id={"startDate"}
             type={"date"}
@@ -50,8 +51,8 @@ const Stats = () => {
               }}
           />
         </div>
-        <div>
-          Конец
+        <div className="label__date">
+          Конец:
           <InputOther
             id={"endDate"}
             type={"date"}
@@ -61,10 +62,10 @@ const Stats = () => {
           />
         </div>
         <Button
+          selector={"stats__btn"}
           content={"Создать отчёт"}
           onClick={() => sendRequest()}
         />
-
       </div>
     </div>
   );

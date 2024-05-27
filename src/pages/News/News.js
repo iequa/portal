@@ -24,17 +24,19 @@ const News = () => {
     },[])
 
     useEffect(() => {
-        api.getNewsById({
-            pageId: id,
-            resolveCallback: (response) => {
-                setPage({
-                    title: response.title,
-                    body: response.body,
-                    date: response.date,
-                    image: response.image
-                })
-            },
-          })
+        if (id) {
+            api.getNewsById({
+                pageId: id,
+                resolveCallback: (response) => {
+                    setPage({
+                        title: response.title,
+                        body: response.body,
+                        date: response.date,
+                        image: response.image
+                    })
+                },
+            })
+        }
     }, [id])
 
     return(

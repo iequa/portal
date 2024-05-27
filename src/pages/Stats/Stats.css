@@ -1,0 +1,27 @@
+.stats__base {
+    font-family: "Open Sans", sans-serif;
+}
+
+.stats__header{
+    display: flex;
+    align-self: center;
+    justify-content: center;
+    margin-bottom: 3vh;
+}
+
+.label__date {
+    display: grid;
+    justify-content: start;
+    gap: 7px;
+    margin-top: 5px;
+}
+
+.stats__btn {
+    margin-top: 10px;
+    background-color: white;
+    cursor: pointer;
+    border-radius: 10px;
+    border: 1px solid #00608a;
+    width: 120px;
+    color: #00608a;
+}

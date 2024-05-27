@@ -83,7 +83,7 @@ const App = observer (() => {
    <div className="plot" onClick={handleMouseClick}>
       <div>
         <Header 
-          HeaderText={"Портал службы крови Тульской области"}
+          HeaderText={"Региональный портал службы крови"}
           Logo={Logo}
           onImageClick={()=>navigate("/about")}
           tokenStorage={tokenStorage}

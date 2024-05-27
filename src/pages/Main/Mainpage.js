@@ -49,7 +49,12 @@ const Main = observer(({tokenStorage}) => {
       <NewsWidget/>
       <ServiceProvisionPopup
         title={"Запись на донацию"}
-        innerElement = {<RecordsCalendar title={"Даты для записи"} calendarType={"donation"}/>}
+        innerElement = {
+          <RecordsCalendar
+            title={"Даты для записи"}
+            calendarType={"donation"}
+          />
+        }
       />
       <div>
         <Pagination

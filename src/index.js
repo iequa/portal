@@ -10,6 +10,7 @@ import Profile from "./pages/Profile/Profile.js";
 import Stats from "./pages/Stats/Stats.js";
 import NewsEditor from "./pages/NewsEditor/NewsEditor.js";
 import NewsList from "./pages/NewsList/NewsList.js";
+import PayServices from "./pages/PayServices/PayServices.js";
 
 // Offline plugin is only necessary in production
 if (process.env.NODE_ENV === 'production') {
@@ -49,6 +50,10 @@ const router = createBrowserRouter([
       {
         path: "/news-editor",
         element: <NewsEditor />,
+      },
+      {
+        path: "/payment-services",
+        element: <PayServices />,
       },
       {
         path: "*",

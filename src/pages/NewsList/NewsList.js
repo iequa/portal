@@ -69,6 +69,7 @@ const NewsList = () => {
         <div id="widget">
             <h1 className="all__news__title">Список новостей</h1>
             <div className="news__elements__block">
+              {tokenStorage.getUserSpecFuncAvaliability() ? <div onClick={() => navigate("/news-editor")}>Добавить новость</div> : ""}
                 {newsPreviews.map((elem) => {
                     return(
                         <div key={`news__elem__${elem.id}`}>

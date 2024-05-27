@@ -1,22 +1,23 @@
 import React, { useEffect, useState } from "react";
 import InputString from "../../Components/Input/InputString";
 import { api } from "../../utils/api";
-import { useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import InputRichText from "../../Components/Input/InputRichText";
 import Button from "../../Components/Button/Button";
 
 const NewsEditor = () => {
 
   let [searchParams, setSearchParams] = useSearchParams();
-    
+  
+  const navigate = useNavigate();
   const [id, setId] = useState(searchParams.get("id") ?? 0);
   const [page, setPage] = useState({
-    id: '', 
+    id: 0, 
     shortTitle: '',
     shortBody: '',
     title: '',
     body: '',
-    date: '',
+    date: new Date().toISOString().split('T')[0],
     image: null,
   });
 
@@ -24,12 +25,12 @@ const NewsEditor = () => {
 
   useEffect(() => {
     setSearchParams({ id });
-    document.title = id === 0 ? "Создание новости" : "Редактрование новости";
+    document.title = id && id === '0' ? "Создание новости" : "Редактрование новости";
     setId(searchParams.get("id"));
   }, []);
 
   useEffect(() => {
-    if (id !== 0) {
+    if (id !== '0') {
       api.getNewsById({
         pageId: id,
         resolveCallback: (response) => {
@@ -40,7 +41,7 @@ const NewsEditor = () => {
                 title: response.title,
                 image: response.image,
                 body: response.body,
-                date: response.date,
+                date: new Date(response.date).toISOString().split('T')[0],
             })
         },
       })
@@ -61,7 +62,9 @@ const NewsEditor = () => {
         page.image = result;
       });
       imgComp.src = obj;
-      document.getElementById('btn__del').className = "";
+      if (document.getElementById('btn__del')) {
+        document.getElementById('btn__del').className = "";
+      }
   }
 
   function deleteImage() {
@@ -71,7 +74,7 @@ const NewsEditor = () => {
     document.getElementById('fileInfo').innerHTML = "";
   }
 
-  function getBase64(file, onLoadCallback) {
+  function getBase64(file) {
     return new Promise(function(resolve, reject) {
         var reader = new FileReader();
         reader.onload = function() { resolve(reader.result); };
@@ -125,6 +128,7 @@ const NewsEditor = () => {
           page.body = val.target.value;
         }}
       />
+      <p className="editor__label__component">Дата новости</p>
       <InputString
         id={"date"}
         editor={"editor__input"}
@@ -132,14 +136,23 @@ const NewsEditor = () => {
         onChange={(val) => {
           page.date = val.target.value;
         }}
-        maxLength={50}
+        type={"date"}
       />
       <Button
         content={"Применить изменения"}
-        onClick={()=> api.setNewsData({
-          id: id,
-          data: page, 
-        })}
+        onClick={()=> id == 0 ?
+          api.createNewsData({
+              data: page, 
+              resolveCallback: (response) => {
+                navigate("/news-editor?id=" + response.id);
+              }
+          })
+          :
+          api.setNewsData({
+            id: id,
+            data: page, 
+          })
+        }
       />
     </div>
   );

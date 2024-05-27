@@ -213,6 +213,17 @@ class Api {
     return this._fetchData(url, body, args);
   }
 
+  createNewsData(args) {
+    const url = `${this.backendUrl}/create-news`;
+    const body = {
+      method: "put",
+      body: JSON.stringify({
+        data: args.data,
+      }),
+    };
+    return this._fetchData(url, body, args);
+  }
+
   setServiceProvisionDate(args) {
     const url = `${this.backendUrl}/set-service-provision-date`;
     const body = {
@@ -235,7 +246,6 @@ class Api {
   }
 
   getDateStat(args) {
-    console.log(args);
     const url = `${this.backendUrl}/get-date-stat`;
     const body = {
       method: "POST",
@@ -270,10 +280,10 @@ class Api {
     return this._fetchData(url, body, args);
   }
 
-  saveFile(blob, filename) {
-    const blobb = new Blob([blob], { type: 'application/vnd.ms-excel' });
-    console.log(blob);
-    const url = window.URL.createObjectURL(blobb);
+  saveFile(bytes, filename) {
+    let bytesArray = new Uint8Array(bytes);
+    const blob = new Blob([bytesArray]);
+    const url = window.URL.createObjectURL(blob);
     const link = document.createElement('a');
     link.href = url;
     link.setAttribute('download', filename);
