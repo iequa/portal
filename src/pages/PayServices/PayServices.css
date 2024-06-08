@@ -1,0 +1,35 @@
+
+.hdr {
+
+}
+
+.services__header {
+    grid-template-columns: 1.5fr 0.3fr;
+}
+
+.btn__select__serv {
+    background-color: white;
+    cursor: pointer;
+    border-radius: 10px;
+    border: 1px solid #00608a;
+    width: 120px;
+    color: #00608a;
+}
+
+.services__list {
+    display: grid;
+    grid-template-columns: 1fr;
+}
+
+.elem {
+    display: grid;
+    grid-template-columns: 1.5fr 0.3fr 0.5fr;
+    height: 100%;
+    border: solid 1px #00608a;
+    gap: 5px;
+    margin-top: 3px;
+    margin-bottom: 3px;
+    text-align: center;
+    justify-items: center;
+    align-items: center;
+}

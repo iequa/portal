@@ -3,9 +3,10 @@ import { api } from "../../utils/api";
 import Button from "../Button/Button";
 import { tokenStorage } from "../../utils/StoredToken";
 
-const RecordsCalendar = ({calendarType, title}) => {
+const RecordsCalendar = ({calendarType, typeId, title}) => {
 
     const [CalendarType, setCalendarType] = useState();
+    const [CalendarTypeId, setCalendarTypeId] = useState(0);
     const [CalendarData, setCalendarData] = useState([]);
     const [SelectedElement, setSelectedElement] = useState("");
 
@@ -16,14 +17,15 @@ const RecordsCalendar = ({calendarType, title}) => {
     useEffect(() => {
         let localWeek = prepareWeek();
         setWeek(localWeek);
-        setCalendarType("Donation");
+        setCalendarType(calendarType);
+        setCalendarTypeId(typeId ? typeId : 0);
     },[])
 
     useEffect(() => {
         if (CalendarType && Week.length === 7) {
             const days = Week.map( ({day, month, year}) => ({day, month, year}));
             api.getCalendarData({
-                body: { type: CalendarType, days: days },
+                body: { type: CalendarType, typeId: CalendarTypeId, days: days },
                 resolveCallback: (response) => {
                     let res = response.dates;
                     res.forEach((el) =>{
@@ -54,8 +56,12 @@ const RecordsCalendar = ({calendarType, title}) => {
             if (elem) {
                 elem.className = "calendar__time__item";
             }
-            const btype = document?.getElementById("bloodtype-select");
-            if (btype.value !== "") {
+            if (calendarType === "Donation") {
+                const btype = document?.getElementById("bloodtype-select");
+                if (btype.value !== "") {
+                    btnConfirm[0].style.display = "block";
+                }
+            } else {
                 btnConfirm[0].style.display = "block";
             }
             setSelectedElement(e.target.id);
@@ -73,7 +79,7 @@ const RecordsCalendar = ({calendarType, title}) => {
     function tryAddRecord() {
         let selectedDate = document?.getElementsByClassName("calendar__time__item selected");
         const btype = document?.getElementById("bloodtype-select");
-        if (selectedDate?.length === 1 && btype.value !== "") {
+        if (selectedDate?.length === 1 && (btype?.value !== "" || CalendarType != "Donation")) {
             const id = Number.parseInt(selectedDate[0].id.slice(5, 6)); //id строки из которой берётся дата
             const time = selectedDate[0].innerHTML; // время
             let dayToSelect = Week.filter((headerEl, index) => { 
@@ -88,18 +94,27 @@ const RecordsCalendar = ({calendarType, title}) => {
                 month: dts0.month.length === 1 ? "0" + dts0.month : dts0.month,
                 year: dts0.year,
                 time: time,
-                donationType: btype.value,
+                donationType: btype?.value? btype.value : "Payment",
             };
             const dateInString = `${selectedDatetime.year}-${selectedDatetime.month}-${selectedDatetime.day}`;
             const date = new Date(dateInString).getTime();
-            const nextAvailDate = new Date(tokenStorage.getUserNextDonationDate());
-            if (nextAvailDate.getTime() > date) {
-                const ourDate = `${selectedDatetime.day}-${selectedDatetime.month}-${selectedDatetime.year}`;
-                tokenStorage.setErrorMessage("Вам недоступна запись на данную дату в связи с откатом после последней донации до " + nextAvailDate.toLocaleDateString())
-            }
-            else {
+            const nextAvailDates = tokenStorage.getUserNextDonationDates();
+            const ourDate = `${selectedDatetime.day}-${selectedDatetime.month}-${selectedDatetime.year}`;
+            let hasDate = false;
+            nextAvailDates.forEach((oneDate) => {
+                if (new Date(oneDate).getTime() > date) {
+                    tokenStorage.setErrorMessage("Вам недоступна запись на данную дату в связи с откатом после последней донации до " + nextAvailDates.toLocaleDateString())
+                    hasDate = true;
+                    return;
+                }
+            })
+            
+            if (!hasDate) {
                 api.setServiceProvisionDate({
-                    body: {selectedDatetime : selectedDatetime},
+                    body: {
+                        selectedDatetime : selectedDatetime,
+                        serviceType: btype?.value? btype.value : CalendarTypeId
+                    },
                     resolveCallback: (response) => {
                         let localWeek = prepareWeek();
                         setWeek(localWeek);
@@ -145,17 +160,21 @@ const RecordsCalendar = ({calendarType, title}) => {
     return (
         <div className="calendar__common">
             <h3 className="calendar__title">{title}</h3>
-            <form>
+            {calendarType === "Donation" ? 
+                <form>
                 <label>Ваша группа крови</label>
                 <select name="bloodtype" id="bloodtype-select">
                     <option value="">-- Выберите вашу группу крови и её резус фактор --</option>
-                    <option value="0">O Rh+</option>
-                    <option value="1">I Rh+</option>
-                    <option value="2">II Rh+</option>
-                    <option value="3">III Rh+</option>
-                    <option value="4">Любая группа с Rh-</option>
+                    <option value="1">O Rh+</option>
+                    <option value="2">I Rh+</option>
+                    <option value="3">II Rh+</option>
+                    <option value="4">III Rh+</option>
+                    <option value="4">IV Rh+</option>
+                    <option value="5">Любая группа с Rh-</option>
                 </select>
             </form>
+            : <label>Выберите время записи на услугу</label> }
+            
             <div className="calendar__date__headers">
                 {Week.map((headerEl, index) => {return(<h4 key={index} className="calendar__date__title">{headerEl.day}-{headerEl.month}</h4>)})}
             </div>

@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import Button from "../Button/Button";
 
-const ServiceProvisionPopup = ({ id, innerElement, title, selector}) => {
+const ServiceProvisionPopup = ({ id, innerElement, title, selector, openNow = false}) => {
 
-    const [isOpen, setIsOpen] = useState(false);
+    const [isOpen, setIsOpen] = useState(openNow);
 
     const [InnerElement, setInnerELement] = useState();
 
@@ -19,7 +19,7 @@ const ServiceProvisionPopup = ({ id, innerElement, title, selector}) => {
 
     return (
       <div id={id}>
-        <button onClick={togglePopup}>Open Popup</button>
+        {!openNow && (<button onClick={togglePopup}>Open Popup</button>)}
         {isOpen && (
           <div id="popup" className= {selector ? selector : "service__popup"}>
             <h1 className="popup__title">{title}</h1>

@@ -19,7 +19,7 @@ class StoredToken {
 
     userInfo = {
         name: "",
-        nextDonationDate: "",
+        nextDonationDate: [],
         specialFunctions: false,
     };
     popupStore = new PopupStore;
@@ -89,12 +89,12 @@ class StoredToken {
         return this.userInfo.specialFunctions;
     }
 
-    getUserNextDonationDate() {
+    getUserNextDonationDates() {
         return this.userInfo.nextDonationDate;
     }
 
     setUserNextDonationDate(date) {
-        return this.userInfo.nextDonationDate = date;
+        return this.userInfo.nextDonationDate.push(date);
     }
 
     setSessionInfo(sessionInfo) {

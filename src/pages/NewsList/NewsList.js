@@ -60,7 +60,6 @@ const NewsList = () => {
     }
 
     function changeCurrentPage(newPage) {
-      console.log(newPage);
       setPage(newPage);
     }
     

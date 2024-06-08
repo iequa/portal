@@ -9,6 +9,7 @@ const ResultType = {
 
 class Api {
   backendUrl = "http://192.168.0.164:8085";
+  //"http://176.213.58.85:8085"
 
   constructor(options) {
     this.options = options;
@@ -196,6 +197,7 @@ class Api {
       body: JSON.stringify({
         type: args?.body?.type,
         days: args?.body?.days,
+        typeId: args?.body?.typeId,
       }),
     };
     return this._fetchData(url, body, args);
@@ -230,6 +232,7 @@ class Api {
       method: "put",
       body: JSON.stringify({
         selectedDatetime: args?.body?.selectedDatetime,
+        serviceType: args?.body?.serviceType,
         user: args?.body?.user,
       }),
       resolveWithFullResponse: true,
@@ -239,6 +242,14 @@ class Api {
 
   getUserInfo(args) {
     const url = `${this.backendUrl}/get-user-data`;
+    const body = {
+      method: "GET",
+    };
+    return this._fetchData(url, body, args);
+  }
+
+  getPayServices(args) {
+    const url = `${this.backendUrl}/get-pay-services`;
     const body = {
       method: "GET",
     };

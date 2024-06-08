@@ -95,7 +95,7 @@ const Profile = () => {
                             <th scope="col">Тип услуги</th>
                             <th scope="col">Название (описание) услуги</th>
                             <th scope="col">Дата предоставления услуги</th>
-                            <th scope="col">Стоимость услуги</th>
+                            <th scope="col">Стоимость услуги (руб.)</th>
                         </tr>
                     </thead>
                     <tbody>

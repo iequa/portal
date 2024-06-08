@@ -52,7 +52,7 @@ const Main = observer(({tokenStorage}) => {
         innerElement = {
           <RecordsCalendar
             title={"Даты для записи"}
-            calendarType={"donation"}
+            calendarType={"Donation"}
           />
         }
       />
