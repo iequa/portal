@@ -32,6 +32,8 @@ const PayServices = () => {
     return (
         <div className="base">
             <h2 className="all__news__title">Услуги</h2>
+            <p>Кабинет платных услуг для населения доступен в будни с 8:00 до 11:00.</p>
+            <p>Удалённая запись на услуги доступна зарегестрированным пользователям портала</p>
             <div className="services__list">
                 <div className="elem services__header">
                     <div>Название услуги</div>

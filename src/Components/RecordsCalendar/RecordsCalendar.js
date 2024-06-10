@@ -102,8 +102,8 @@ const RecordsCalendar = ({calendarType, typeId, title}) => {
             const ourDate = `${selectedDatetime.day}-${selectedDatetime.month}-${selectedDatetime.year}`;
             let hasDate = false;
             nextAvailDates.forEach((oneDate) => {
-                if (new Date(oneDate).getTime() > date) {
-                    tokenStorage.setErrorMessage("Вам недоступна запись на данную дату в связи с откатом после последней донации до " + nextAvailDates.toLocaleDateString())
+                if (new Date(oneDate.date).getTime() > date && typeId === oneDate.typeId) {
+                    tokenStorage.setErrorMessage("Вам недоступна запись на данную дату в связи с откатом после последней донации до " + new Date(oneDate.date).toLocaleDateString());
                     hasDate = true;
                     return;
                 }
@@ -119,7 +119,7 @@ const RecordsCalendar = ({calendarType, typeId, title}) => {
                         let localWeek = prepareWeek();
                         setWeek(localWeek);
                         setSelectedElement("");
-                        tokenStorage.setUserNextDonationDate(response.nextDonationDate)
+                        tokenStorage.setUserNextDonationDate({typeId: response.serviceId, date: response.nextDonationDate});
                     }
                 })
             }
@@ -161,15 +161,14 @@ const RecordsCalendar = ({calendarType, typeId, title}) => {
         <div className="calendar__common">
             <h3 className="calendar__title">{title}</h3>
             {calendarType === "Donation" ? 
-                <form>
-                <label>Ваша группа крови</label>
+                <form style={{marginBottom : "20px"}}>
+                <label>Ваша группа крови:  </label>
                 <select name="bloodtype" id="bloodtype-select">
                     <option value="">-- Выберите вашу группу крови и её резус фактор --</option>
-                    <option value="1">O Rh+</option>
-                    <option value="2">I Rh+</option>
-                    <option value="3">II Rh+</option>
-                    <option value="4">III Rh+</option>
-                    <option value="4">IV Rh+</option>
+                    <option value="1">O (I) Rh+</option>
+                    <option value="3">A (II) Rh+</option>
+                    <option value="4">B (III) Rh+</option>
+                    <option value="4">AB (IV) Rh+</option>
                     <option value="5">Любая группа с Rh-</option>
                 </select>
             </form>

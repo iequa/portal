@@ -40,6 +40,7 @@ const LoginPage = observer(({tokenStorage}) => {
         userName: "",
         userSurname: "",
         userDate: "",
+        userPhone: "",
     }
 
     function sendData() {
@@ -105,6 +106,7 @@ const LoginPage = observer(({tokenStorage}) => {
                 name: data.userName,
                 surname: data.userSurname,
                 date: data.userDate,
+                number: data.userPhone,
                 resolveCallback: (response) => {
                     tokenStorage.popupStore.setOpenPopUp(false)
                 }
@@ -205,6 +207,16 @@ const LoginPage = observer(({tokenStorage}) => {
                     value={data?.userDate}
                     onChange={(val) => {
                     data.userDate = val.target.value;
+                    }}
+                />
+            </div>
+            <div className="login-page__block"> 
+                <label>Ваш номер телефона в формате 89ХХХХХХХХХ</label>
+                <InputString
+                    id={"phone"}
+                    value={data?.userPhone}
+                    onChange={(val) => {
+                    data.userPhone = val.target.value;
                     }}
                 />
             </div>

@@ -11,6 +11,7 @@ import Stats from "./pages/Stats/Stats.js";
 import NewsEditor from "./pages/NewsEditor/NewsEditor.js";
 import NewsList from "./pages/NewsList/NewsList.js";
 import PayServices from "./pages/PayServices/PayServices.js";
+import ForDonors from "./pages/ForDonors/ForDonors.js";
 
 // Offline plugin is only necessary in production
 if (process.env.NODE_ENV === 'production') {
@@ -42,6 +43,10 @@ const router = createBrowserRouter([
       {
         path: "/get-stats",
         element: <Stats />,
+      },
+      {
+        path: "/for-donors",
+        element: <ForDonors />,
       },
       {
         path: "/news-list",

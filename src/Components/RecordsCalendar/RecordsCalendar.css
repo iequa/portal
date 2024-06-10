@@ -47,7 +47,7 @@
 .calendar__time__item {
     width: 100%;
     height: 4vh;
-    background-color: rgb(39, 187, 71);
+    background-color: rgb(247 245 255);
     cursor: pointer;
     margin: 0px 0px 0px 0px;
     border: 1px #00608a solid;
@@ -60,12 +60,20 @@
 }
 
 .not__avaliable {
-    background-color: rgb(255, 255, 255);
+    background-color: rgb(112 109 117);
     cursor: not-allowed;
 }
 
 .btn__confirm {
     margin: 0 auto;
+    background-color: white;
+    cursor: pointer;
+    border-radius: 10px;
+    border: 1px solid #00608a;
+    width: 220px;
+    height: 50px;
+    color: #00608a;
+    margin-top: 10px;
     display: none;
 }
 

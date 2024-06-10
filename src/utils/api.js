@@ -135,6 +135,7 @@ class Api {
         name: args.name,
         surname: args.surname,
         date: args.date,
+        number: args.number,
       }),
     };
     return this._fetchData(url, body, args);

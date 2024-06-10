@@ -47,15 +47,6 @@ const Main = observer(({tokenStorage}) => {
     <div>
       <DonorBloodlight/>
       <NewsWidget/>
-      <ServiceProvisionPopup
-        title={"Запись на донацию"}
-        innerElement = {
-          <RecordsCalendar
-            title={"Даты для записи"}
-            calendarType={"Donation"}
-          />
-        }
-      />
       <div>
         <Pagination
           currentPage={currentPage}

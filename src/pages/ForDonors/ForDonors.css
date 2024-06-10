@@ -1,0 +1,11 @@
+.btn__select__donor {
+    background-color: white;
+    cursor: pointer;
+    border-radius: 10px;
+    border: 1px solid #00608a;
+    width: 220px;
+    height: 50px;
+    color: #00608a;
+    margin-left: auto;
+    margin-right: auto;
+}

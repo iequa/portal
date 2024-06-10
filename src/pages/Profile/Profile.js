@@ -18,6 +18,7 @@ const Profile = () => {
                             name: response.name,
                             surname: response.surname,
                             login: response.login,
+                            phone: response.phone,
                             serviceInfos: [...response.serviceInfos],
                         });
                     }
@@ -72,6 +73,12 @@ const Profile = () => {
             </div>
             <div className="main__value">
                 {userInfo?.login}
+            </div>
+            <div className="main__label">
+                Номер телефона:
+            </div>
+            <div className="main__value">
+                {userInfo?.phone}
             </div>
         </div>
         {tokenStorage.isUserAdmin() ? (
