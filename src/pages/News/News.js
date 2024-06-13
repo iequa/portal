@@ -46,7 +46,7 @@ const News = () => {
             <div className="news__body">
                 {page?.body?.length > 0 ? toReact(page?.body) : toReact("")}
             </div>
-            <p className="news__date">{page?.date}</p>
+            <p className="news__date">{new Date(page?.date).toLocaleDateString()}</p>
         </div>
     )
 }

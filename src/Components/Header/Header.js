@@ -16,7 +16,7 @@ const Header = observer(({HeaderText, Logo, onImageClick, tokenStorage}) => {
           const ls = window.localStorage;
           ls.removeItem("sessionData");
           tokenStorage.setIsLogged(false);
-          navigate("/");
+          navigate("/about");
         }
       }
     })

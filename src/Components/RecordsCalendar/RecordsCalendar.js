@@ -102,7 +102,7 @@ const RecordsCalendar = ({calendarType, typeId, title}) => {
             const ourDate = `${selectedDatetime.day}-${selectedDatetime.month}-${selectedDatetime.year}`;
             let hasDate = false;
             nextAvailDates.forEach((oneDate) => {
-                if (new Date(oneDate.date).getTime() > date && typeId === oneDate.typeId) {
+                if (new Date(oneDate.date).getTime() > date && btype?.value == oneDate.id) {
                     tokenStorage.setErrorMessage("Вам недоступна запись на данную дату в связи с откатом после последней донации до " + new Date(oneDate.date).toLocaleDateString());
                     hasDate = true;
                     return;
@@ -119,7 +119,7 @@ const RecordsCalendar = ({calendarType, typeId, title}) => {
                         let localWeek = prepareWeek();
                         setWeek(localWeek);
                         setSelectedElement("");
-                        tokenStorage.setUserNextDonationDate({typeId: response.serviceId, date: response.nextDonationDate});
+                        tokenStorage.setUserNextDonationDate({id: response.serviceId, date: response.nextDonationDate});
                     }
                 })
             }

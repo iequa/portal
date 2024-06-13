@@ -80,6 +80,7 @@ const NewsList = () => {
                               <p className="prev__short__body__list">{elem.shortBody}</p>
                               <label className="prev__date">{new Date(elem.date).toLocaleDateString()}</label>
                           </div>
+                          {console.log(tokenStorage.getUserSpecFuncAvaliability())}
                           {tokenStorage.getUserSpecFuncAvaliability() ? <div onClick={() => navigate("/news-editor?id=" + elem.id)}>Редактировать</div> : ""}
                         </div>
                     )
