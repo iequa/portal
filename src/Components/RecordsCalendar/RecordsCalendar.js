@@ -130,28 +130,34 @@ const RecordsCalendar = ({calendarType, typeId, title}) => {
         let localWeek = new Array(7);
         let date = new Date();
         for(let i = 0; i < 7; i++){
-            let dateToWeek = new Date(date.getTime());
-            localWeek[i] = {
-                dayType: date.getDay(), 
-                day: date.getDate(), 
-                month: date.getMonth() + 1, //Идёт с нуля
-                year: date.getFullYear(),
-                date: dateToWeek,
-                times: [
-                    {available: true, time: "08:00"}, 
-                    {available: true, time: "08:15"},
-                    {available: true, time: "08:30"},
-                    {available: true, time: "08:45"},
-                    {available: true, time: "09:00"},
-                    {available: true, time: "09:15"},
-                    {available: true, time: "09:30"},
-                    {available: true, time: "09:45"},
-                    {available: true, time: "10:00"},
-                    {available: true, time: "10:15"},
-                    {available: true, time: "10:30"},
-                    {available: true, time: "10:45"}
-                ]
-            };
+            if (dayArray[date.getDay()] === 'вс') {
+                //Воскресенье не учитываем, откатываем счётчик на 1 для повторного пробега по данному i
+                i--;
+            }
+            else {
+                let dateToWeek = new Date(date.getTime());
+                localWeek[i] = {
+                    dayType: date.getDay(), 
+                    day: date.getDate(), 
+                    month: date.getMonth() + 1, //Идёт с нуля
+                    year: date.getFullYear(),
+                    date: dateToWeek,
+                    times: [
+                        {available: true, time: "08:00"}, 
+                        {available: true, time: "08:15"},
+                        {available: true, time: "08:30"},
+                        {available: true, time: "08:45"},
+                        {available: true, time: "09:00"},
+                        {available: true, time: "09:15"},
+                        {available: true, time: "09:30"},
+                        {available: true, time: "09:45"},
+                        {available: true, time: "10:00"},
+                        {available: true, time: "10:15"},
+                        {available: true, time: "10:30"},
+                        {available: true, time: "10:45"}
+                    ]
+                };
+            }
             date.setDate(date.getDate() + 1);
         }
         return localWeek;
